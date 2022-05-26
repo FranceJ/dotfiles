@@ -1,0 +1,53 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+execute pathogen#infect()
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+" filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+set laststatus=2
+set termencoding=utf-8
+set encoding=utf-8
+set term=xterm-256color
+set t_Co=256
+colors zenburn
+set autoindent
+set smartindent
+set number
+set pastetoggle=<F3>
+set list
+set clipboard=unnamed
+:set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+
+syntax on
+
+" Make searching better
+set gdefault
+set hlsearch
+set incsearch
+set ignorecase
+set nu
+set smartcase
+set showmatch
+
+set backspace=indent,eol,start
+autocmd FileType javascript set formatprg=prettier\ --stdin
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+let g:javascript_plugin_jsdoc = 1
+let g:airline_theme='zenburn'
+let NERDTreeShowHidden=1
+au FileType gitcommit setlocal tw=72
+:imap jj <Esc>
+:imap ZZ <Esc>o
+:imap DD <Esc>dd
