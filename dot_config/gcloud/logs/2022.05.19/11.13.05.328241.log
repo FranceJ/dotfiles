@@ -1,8 +1,0 @@
-2022-05-19 11:13:05,330 DEBUG    root            Loaded Command Group: ['gcloud', 'config']
-2022-05-19 11:13:05,331 DEBUG    root            Loaded Command Group: ['gcloud', 'config', 'configurations']
-2022-05-19 11:13:05,333 DEBUG    root            Loaded Command Group: ['gcloud', 'config', 'configurations', 'describe']
-2022-05-19 11:13:05,334 DEBUG    root            Running [gcloud.config.configurations.describe] with arguments: [--format: "value[separator=""](properties.core.account,properties.core.project)", CONFIGURATION_NAME: "default"]
-2022-05-19 11:13:05,335 INFO     root            Display format: "default value[separator=""](properties.core.account,properties.core.project)"
-2022-05-19 11:13:05,336 INFO     ___FILE_ONLY___ britton.jenner@crowdriff.comcrowdriff-stories-prod
-
-2022-05-19 11:13:05,340 DEBUG    root            Metrics reporting process started...

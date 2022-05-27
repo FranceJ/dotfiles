@@ -1,4 +1,0 @@
-2022-05-19 09:29:04,100 DEBUG    root            Loaded Command Group: ['gcloud', 'functions']
-2022-05-19 09:29:04,139 DEBUG    root            Loaded Command Group: ['gcloud', 'functions', 'deploy']
-2022-05-19 09:29:04,146 ERROR    root            (gcloud.functions.deploy) argument --env-vars-file: expected one argument
-2022-05-19 09:29:04,151 DEBUG    root            Metrics reporting process started...

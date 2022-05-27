@@ -1,4 +1,0 @@
-2022-05-06 10:31:32,207 DEBUG    root            Loaded Command Group: ['gcloud', 'identity']
-2022-05-06 10:31:32,208 ERROR    root            (gcloud.identity) Command name argument expected.
-2022-05-06 10:31:32,208 DEBUG    root            Loaded Command Group: ['gcloud', 'identity', 'groups']
-2022-05-06 10:31:32,213 DEBUG    root            Metrics reporting process started...

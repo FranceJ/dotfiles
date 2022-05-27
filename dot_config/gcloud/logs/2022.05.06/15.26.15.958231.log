@@ -1,9 +1,0 @@
-2022-05-06 15:26:15,959 DEBUG    root            Loaded Command Group: ['gcloud', 'projects']
-2022-05-06 15:26:15,960 DEBUG    root            Loaded Command Group: ['gcloud', 'projects', 'describe']
-2022-05-06 15:26:15,961 DEBUG    root            Running [gcloud.projects.describe] with arguments: [--account: "britton.jenner@crowdriff.com", --configuration: "default", --format: "value(name)", PROJECT_ID_OR_NUMBER: "crowdriff-stories-dev"]
-2022-05-06 15:26:15,984 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): cloudresourcemanager.googleapis.com:443
-2022-05-06 15:26:16,228 DEBUG    urllib3.connectionpool https://cloudresourcemanager.googleapis.com:443 "GET /v1/projects/crowdriff-stories-dev?alt=json HTTP/1.1" 200 None
-2022-05-06 15:26:16,230 INFO     root            Display format: "default value(name)"
-2022-05-06 15:26:16,231 INFO     ___FILE_ONLY___ stories-dev
-
-2022-05-06 15:26:16,241 DEBUG    root            Metrics reporting process started...
