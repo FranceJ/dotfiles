@@ -1,0 +1,8 @@
+[core]
+account = britton.jenner@crowdriff.com
+disable_usage_reporting = False
+project = crowdriff-stories-dev
+
+[compute]
+zone = us-central1
+

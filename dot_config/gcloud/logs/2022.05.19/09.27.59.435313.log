@@ -1,0 +1,26 @@
+2022-05-19 09:27:59,436 DEBUG    root            Loaded Command Group: ['gcloud', 'auth']
+2022-05-19 09:27:59,438 DEBUG    root            Loaded Command Group: ['gcloud', 'auth', 'list']
+2022-05-19 09:27:59,439 DEBUG    root            Running [gcloud.auth.list] with arguments: []
+2022-05-19 09:27:59,443 INFO     root            Display format: "    table[title='Credentialed Accounts'](
+        status.yesno(yes='*', no=''):label=ACTIVE,
+        account
+    )"
+2022-05-19 09:27:59,443 INFO     ___FILE_ONLY___        Credentialed Accounts
+2022-05-19 09:27:59,443 INFO     ___FILE_ONLY___ 
+
+2022-05-19 09:27:59,443 INFO     ___FILE_ONLY___ ACTIVE
+2022-05-19 09:27:59,443 INFO     ___FILE_ONLY___   
+2022-05-19 09:27:59,443 INFO     ___FILE_ONLY___ ACCOUNT
+2022-05-19 09:27:59,443 INFO     ___FILE_ONLY___ 
+
+2022-05-19 09:27:59,443 INFO     ___FILE_ONLY___ *
+2022-05-19 09:27:59,443 INFO     ___FILE_ONLY___        
+2022-05-19 09:27:59,443 INFO     ___FILE_ONLY___ britton.jenner@crowdriff.com
+2022-05-19 09:27:59,443 INFO     ___FILE_ONLY___ 
+
+2022-05-19 09:27:59,443 INFO     ___FILE_ONLY___ 
+To set the active account, run:
+    $ gcloud config set account `ACCOUNT`
+
+
+2022-05-19 09:27:59,459 DEBUG    root            Metrics reporting process started...

@@ -1,0 +1,41 @@
+2022-05-18 09:26:51,222 DEBUG    root            Loaded Command Group: ['gcloud', 'config']
+2022-05-18 09:26:51,224 DEBUG    root            Loaded Command Group: ['gcloud', 'config', 'config_helper']
+2022-05-18 09:26:51,224 DEBUG    root            Running [gcloud.config.config-helper] with arguments: [--format: "json", --min-expiry: "3600"]
+2022-05-18 09:26:51,235 DEBUG    google.auth.transport.requests Making request: POST https://oauth2.googleapis.com/token
+2022-05-18 09:26:51,285 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2022-05-18 09:26:51,397 DEBUG    urllib3.connectionpool https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2022-05-18 09:26:51,400 DEBUG    google.auth.transport.requests Making request: POST https://oauth2.googleapis.com/token
+2022-05-18 09:26:51,402 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2022-05-18 09:26:51,524 DEBUG    urllib3.connectionpool https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2022-05-18 09:26:51,536 INFO     root            Display format: "default json"
+2022-05-18 09:26:51,537 INFO     ___FILE_ONLY___ {
+  "configuration": {
+    "active_configuration": "default",
+    "properties": {
+      "compute": {
+        "zone": "us-central1"
+      },
+      "core": {
+        "account": "britton.jenner@crowdriff.com",
+        "disable_usage_reporting": "False",
+        "project": "crowdriff-stories-dev"
+      }
+    }
+  },
+  "credential": {
+    "access_token": "ya29.a0ARrdaM92K3Kwg8d63nALYRoht1KRQ5Wv1bK0q4Rfs-lmWAYQyPl2aoF1k0by9FeCQfzpL6mNMfFA8OHYTmFoeC-mgI6T4vQie2mFW-Mq8uPa1a9X4YDz-RdkWCzXV3zV0MjrI3j3Gqr-wAKvn2EjblaRN5Qh4UoX3itBz-o",
+    "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImIxYTgyNTllYjA3NjYwZWYyMzc4MWM4NWI3ODQ5YmZhMGExYzgwNmMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIzMjU1NTk0MDU1OS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6IjMyNTU1OTQwNTU5LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA0NzU3Njk2MTMwOTc4MTMyNDM4IiwiaGQiOiJjcm93ZHJpZmYuY29tIiwiZW1haWwiOiJicml0dG9uLmplbm5lckBjcm93ZHJpZmYuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiIzUWQtRGxOUS1oLUlJSEhnN1ZldVVRIiwiaWF0IjoxNjUyODgwNDExLCJleHAiOjE2NTI4ODQwMTF9.wROOunEv59e0JKxE-APUZaCVHm6mzrIs7KxvtoH2qayvvnHKiPGpTSDDdfKVi6BGtdKZjMF7gMPAQKDKRBIwZ9PRYClSg4doSkgKEHy67_RSxui0Ph0FmZSENUNO5qjvGqPBBw-PbTCuadJ66NVNuNvgwVNHFFq05Jg5M6V10xX3HWKs44k2ZAzeq5V-M4TNKO_VKM7zPmT2YwSf0-V69OBsPUmeAqNQNXITjElRoLiPCFl8TbighZy1vDROmPOINIOs_XYkdXm55h3uAog6c4QXasqrZmWthMnskzrjaAOFORIoJDf2aVO_PiMGw_LeOUb_ztOqsrTrz57XJgSIIw",
+    "token_expiry": "2022-05-18T14:26:50Z"
+  },
+  "sentinels": {
+    "config_sentinel": "/Users/britton.jenner/.config/gcloud/config_sentinel"
+  }
+}
+2022-05-18 09:26:51,537 INFO     ___FILE_ONLY___ 
+
+2022-05-18 09:26:51,540 DEBUG    root            Checking for updates...
+2022-05-18 09:26:51,580 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): dl.google.com:443
+2022-05-18 09:26:51,684 DEBUG    urllib3.connectionpool https://dl.google.com:443 "GET /dl/cloudsdk/channels/rapid/components-2.json HTTP/1.1" 200 187088
+2022-05-18 09:26:51,746 DEBUG    root            Updating notification cache...
+2022-05-18 09:26:51,746 DEBUG    root            Activating notification: [default]
+2022-05-18 09:26:51,758 DEBUG    root            Metrics reporting process started...

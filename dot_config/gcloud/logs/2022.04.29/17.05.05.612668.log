@@ -1,0 +1,36 @@
+2022-04-29 17:05:05,614 DEBUG    root            Loaded Command Group: ['gcloud', 'config']
+2022-04-29 17:05:05,617 DEBUG    root            Loaded Command Group: ['gcloud', 'config', 'config_helper']
+2022-04-29 17:05:05,618 DEBUG    root            Running [gcloud.config.config-helper] with arguments: [--format: "json", --min-expiry: "3600"]
+2022-04-29 17:05:05,622 DEBUG    google.auth.transport.requests Making request: POST https://oauth2.googleapis.com/token
+2022-04-29 17:05:05,665 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2022-04-29 17:05:05,789 DEBUG    urllib3.connectionpool https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2022-04-29 17:05:05,805 DEBUG    google.auth.transport.requests Making request: POST https://oauth2.googleapis.com/token
+2022-04-29 17:05:05,807 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2022-04-29 17:05:05,916 DEBUG    urllib3.connectionpool https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2022-04-29 17:05:05,919 INFO     root            Display format: "default json"
+2022-04-29 17:05:05,919 INFO     ___FILE_ONLY___ {
+  "configuration": {
+    "active_configuration": "default",
+    "properties": {
+      "compute": {
+        "zone": "us-central1"
+      },
+      "core": {
+        "account": "britton.jenner@crowdriff.com",
+        "disable_usage_reporting": "False",
+        "project": "crowdriff-stories-dev"
+      }
+    }
+  },
+  "credential": {
+    "access_token": "ya29.A0ARrdaM81NVk0JCrXQicpwF8UawKUbrSJ5FFLd3oK2gyPraB76rG2audisAAiSd7lL5gLKGupODson7AcchvHVhpDgt2c32NJnH1rF-5yh0xwjwDr8QqQkgYdvH6xeiq5LNsrqNbKz8DYShyW1y5rjTphDPZjiDxwHlQK520",
+    "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6Ijg2MTY0OWU0NTAzMTUzODNmNmI5ZDUxMGI3Y2Q0ZTkyMjZjM2NkODgiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIzMjU1NTk0MDU1OS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6IjMyNTU1OTQwNTU5LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA0NzU3Njk2MTMwOTc4MTMyNDM4IiwiaGQiOiJjcm93ZHJpZmYuY29tIiwiZW1haWwiOiJicml0dG9uLmplbm5lckBjcm93ZHJpZmYuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJkUkFoMFIzVUNxanp5VWZUTFBMM3pnIiwiaWF0IjoxNjUxMjY2MzA1LCJleHAiOjE2NTEyNjk5MDV9.lTK__1jbrVbNRsSUDz_P80RyPVa6c0EDGv7vXOIuG98rDHvITxlq2HhEj2IpV7umbz6fy7nf8vfLEzGI1y6VDdmecsHsCvjb4qy0Ty3jiOC8HzW6MMr2ud_NkMfdToX6lHO7IWdON2j5e0ly7Lrzh-TjazlyIHSiLQvaFhVMJ2YVowNI-W53P6nfsqkgRINru3hOFnZ7QIEQdM9HUe9wa_gPUJ7J0Mo2Jle0SZRAJFsyiDbBNw-2H75q1Kx4pPbrDSoPIcBf6DIu-zLMA0-FlDR8rF9A942G8VLcZx2_lSubl_bXQI6YhWcJDIRFKbdq5ieJIRZlzYeBiQd5rqatAw",
+    "token_expiry": "2022-04-29T22:05:04Z"
+  },
+  "sentinels": {
+    "config_sentinel": "/Users/britton.jenner/.config/gcloud/config_sentinel"
+  }
+}
+2022-04-29 17:05:05,919 INFO     ___FILE_ONLY___ 
+
+2022-04-29 17:05:05,940 DEBUG    root            Metrics reporting process started...

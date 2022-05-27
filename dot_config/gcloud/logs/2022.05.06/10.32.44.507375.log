@@ -1,0 +1,35 @@
+2022-05-06 10:32:44,507 DEBUG    root            Loaded Command Group: ['gcloud', 'projects']
+2022-05-06 10:32:44,509 DEBUG    root            Loaded Command Group: ['gcloud', 'projects', 'list']
+2022-05-06 10:32:44,510 DEBUG    root            Running [gcloud.projects.list] with arguments: []
+2022-05-06 10:32:44,510 INFO     root            client_filter="None" server_filter="None"
+2022-05-06 10:32:44,516 INFO     root            Display format: "
+    table(
+      projectId:sort=1,
+      name,
+      projectNumber
+    )
+"
+2022-05-06 10:32:44,521 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): cloudresourcemanager.googleapis.com:443
+2022-05-06 10:32:45,027 DEBUG    urllib3.connectionpool https://cloudresourcemanager.googleapis.com:443 "GET /v1/projects?alt=json&filter=lifecycleState%3AACTIVE&pageSize=500 HTTP/1.1" 200 None
+2022-05-06 10:32:45,029 INFO     ___FILE_ONLY___ PROJECT_ID
+2022-05-06 10:32:45,029 INFO     ___FILE_ONLY___               
+2022-05-06 10:32:45,029 INFO     ___FILE_ONLY___ NAME
+2022-05-06 10:32:45,029 INFO     ___FILE_ONLY___           
+2022-05-06 10:32:45,029 INFO     ___FILE_ONLY___ PROJECT_NUMBER
+2022-05-06 10:32:45,029 INFO     ___FILE_ONLY___ 
+
+2022-05-06 10:32:45,029 INFO     ___FILE_ONLY___ crowdriff-stories-dev
+2022-05-06 10:32:45,029 INFO     ___FILE_ONLY___    
+2022-05-06 10:32:45,029 INFO     ___FILE_ONLY___ stories-dev
+2022-05-06 10:32:45,030 INFO     ___FILE_ONLY___    
+2022-05-06 10:32:45,030 INFO     ___FILE_ONLY___ 31098141265
+2022-05-06 10:32:45,030 INFO     ___FILE_ONLY___ 
+
+2022-05-06 10:32:45,030 INFO     ___FILE_ONLY___ crowdriff-stories-prod
+2022-05-06 10:32:45,030 INFO     ___FILE_ONLY___   
+2022-05-06 10:32:45,030 INFO     ___FILE_ONLY___ stories-prod
+2022-05-06 10:32:45,031 INFO     ___FILE_ONLY___   
+2022-05-06 10:32:45,031 INFO     ___FILE_ONLY___ 844241651460
+2022-05-06 10:32:45,031 INFO     ___FILE_ONLY___ 
+
+2022-05-06 10:32:45,041 DEBUG    root            Metrics reporting process started...

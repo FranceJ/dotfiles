@@ -1,0 +1,14 @@
+2022-05-25 09:28:11,424 DEBUG    root            Loaded Command Group: ['gcloud', 'projects']
+2022-05-25 09:28:11,428 DEBUG    root            Loaded Command Group: ['gcloud', 'projects', 'describe']
+2022-05-25 09:28:11,430 DEBUG    root            Running [gcloud.projects.describe] with arguments: [--account: "britton.jenner@crowdriff.com", --configuration: "default", --format: "value(name)", PROJECT_ID_OR_NUMBER: "crowdriff-stories-prod"]
+2022-05-25 09:28:11,505 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): cloudresourcemanager.googleapis.com:443
+2022-05-25 09:28:11,729 DEBUG    urllib3.connectionpool https://cloudresourcemanager.googleapis.com:443 "GET /v1/projects/crowdriff-stories-prod?alt=json HTTP/1.1" 200 None
+2022-05-25 09:28:11,731 INFO     root            Display format: "default value(name)"
+2022-05-25 09:28:11,732 INFO     ___FILE_ONLY___ stories-prod
+
+2022-05-25 09:28:11,732 DEBUG    root            Checking for updates...
+2022-05-25 09:28:11,768 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): dl.google.com:443
+2022-05-25 09:28:11,867 DEBUG    urllib3.connectionpool https://dl.google.com:443 "GET /dl/cloudsdk/channels/rapid/components-2.json HTTP/1.1" 200 190923
+2022-05-25 09:28:11,918 DEBUG    root            Updating notification cache...
+2022-05-25 09:28:11,918 DEBUG    root            Activating notification: [default]
+2022-05-25 09:28:11,926 DEBUG    root            Metrics reporting process started...

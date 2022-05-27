@@ -1,0 +1,48 @@
+2022-05-25 11:26:52,522 DEBUG    root            Loaded Command Group: ['gcloud', 'functions']
+2022-05-25 11:26:52,557 DEBUG    root            Loaded Command Group: ['gcloud', 'functions', 'deploy']
+2022-05-25 11:26:52,565 DEBUG    root            Running [gcloud.functions.deploy] with arguments: [--entry-point: "entrypoint", --env-vars-file: "{'NODE_ENV': 'development', 'NODE_PATH': '.', 'GATEWAY_BASE': 'https://story-network-gateway.derp.website', 'SERVICE_ACCOUNT': 'github-actions@crowdriff-stories-dev.iam.gserviceaccount.com', 'GOOGLE_CLOUD_PROJECT': 'crowdriff-stories-dev', 'PUB_SUB_TOPIC': 'stories-es-sync'}", --memory: "256Mi", --runtime: "nodejs14", --source: "dist/", --timeout: "540", --trigger-topic: "stories-es-sync", NAME: "stories-es-sync"]
+2022-05-25 11:26:52,576 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): cloudfunctions.googleapis.com:443
+2022-05-25 11:26:52,808 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/projects/crowdriff-stories-dev/locations/us-central1/functions/stories-es-sync?alt=json HTTP/1.1" 200 None
+2022-05-25 11:26:52,814 INFO     root            Not using ignore file.
+2022-05-25 11:26:52,815 INFO     root            Not using ignore file.
+2022-05-25 11:26:52,844 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): cloudfunctions.googleapis.com:443
+2022-05-25 11:26:53,997 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "POST /v1/projects/crowdriff-stories-dev/locations/us-central1/functions:generateUploadUrl?alt=json HTTP/1.1" 200 None
+2022-05-25 11:26:54,005 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): storage.googleapis.com:443
+2022-05-25 11:26:54,271 DEBUG    urllib3.connectionpool https://storage.googleapis.com:443 "PUT /uploads-556841579775.us-central1.cloudfunctions.appspot.com/37b8c9b5-f149-4fa5-9e28-7229c0ba37ab.zip?GoogleAccessId=service-31098141265%40gcf-admin-robot.iam.gserviceaccount.com&Expires=1653494213&Signature=du4MqV5MDVM01BxxRVqu4XevCm5rUshUb3HU5Ky2Y%2BRUoWZoulGhht5CYRSzKvjkfp5WqxuON%2FFUGT6Z7jmeJi6%2FUP0vVkEAtIf5PY3vwDLdoxmhvbsP2ZzjpjCCHaQOEvsjSJMCp4ZlqWK9uH0OSDmvF58F%2FKW5W3Tsc0HkpYxwBbNxAFyPM8TcNvNkuudlhAIvX4t6dAyMJLvfBUB7jW8nsRyj2BlqStPICe%2FNjNGk1BsSdd9P%2FN%2FA5VjMN%2FqpIuayCbabUCEiCUKJuYg6LIFA641rg7M1lxfQqOEP1F%2BQ6RgyV1qJtAxLYZKZEH%2F08f6hbV2byZ9hSBQJWw5TiQ%3D%3D HTTP/1.1" 200 0
+2022-05-25 11:26:54,285 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): cloudfunctions.googleapis.com:443
+2022-05-25 11:26:54,706 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "PATCH /v1/projects/crowdriff-stories-dev/locations/us-central1/functions/stories-es-sync?alt=json&updateMask=availableMemoryMb%2CentryPoint%2CeventTrigger%2ChttpsTrigger%2Cruntime%2CsourceUploadUrl%2Ctimeout HTTP/1.1" 200 None
+2022-05-25 11:26:54,717 INFO     ___FILE_ONLY___ Deploying function (may take a while - up to 2 minutes)...
+2022-05-25 11:26:54,721 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): cloudfunctions.googleapis.com:443
+2022-05-25 11:26:54,899 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy9JZVYxNlEtejdvMA?alt=json HTTP/1.1" 200 None
+2022-05-25 11:26:56,360 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy9JZVYxNlEtejdvMA?alt=json HTTP/1.1" 200 None
+2022-05-25 11:26:56,369 INFO     ___FILE_ONLY___ 
+For Cloud Build Logs, visit: https://console.cloud.google.com/cloud-build/builds;region=us-central1/ff589761-063a-474f-b672-a253005d7e66?project=31098141265
+
+2022-05-25 11:26:58,473 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy9JZVYxNlEtejdvMA?alt=json HTTP/1.1" 200 None
+2022-05-25 11:26:59,125 DEBUG    root            (gcloud.functions.deploy) Aborted by user.
+Traceback (most recent call last):
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/calliope/cli.py", line 987, in Execute
+    resources = calliope_command.Run(cli=self, args=args)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/calliope/backend.py", line 809, in Run
+    resources = command_instance.Run(args)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/surface/functions/deploy.py", line 91, in Run
+    return command_v1.Run(args, track=self.ReleaseTrack())
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/command_lib/functions/v1/deploy/command.py", line 588, in Run
+    api_util.WaitForFunctionUpdateOperation(
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/api_lib/functions/v1/util.py", line 388, in CatchHTTPErrorRaiseHTTPExceptionFn
+    return func(*args, **kwargs)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/api_lib/functions/v1/util.py", line 438, in WaitForFunctionUpdateOperation
+    operations.Wait(op, client.MESSAGES_MODULE, client, _DEPLOY_WAIT_NOTICE,
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/api_lib/functions/v1/operations.py", line 150, in Wait
+    _WaitForOperation(client, request, notice, try_set_invoker,
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/api_lib/functions/v1/operations.py", line 113, in _WaitForOperation
+    retryer.RetryOnResult(_GetOperationStatus,
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/core/util/retry.py", line 257, in RetryOnResult
+    _SleepMs(time_to_wait_ms)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/core/util/retry.py", line 322, in _SleepMs
+    time.sleep(time_to_wait_ms / 1000.0)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/core/console/progress_tracker.py", line 154, in _CtrlCHandler
+    raise console_io.OperationCancelledError(self._aborted_message)
+googlecloudsdk.core.console.console_io.OperationCancelledError: Aborted by user.
+2022-05-25 11:26:59,131 ERROR    root            (gcloud.functions.deploy) Aborted by user.
+2022-05-25 11:26:59,145 DEBUG    root            Metrics reporting process started...

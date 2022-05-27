@@ -1,0 +1,15 @@
+2022-05-13 14:04:20,645 DEBUG    root            Loaded Command Group: ['gcloud', 'projects']
+2022-05-13 14:04:20,647 DEBUG    root            Loaded Command Group: ['gcloud', 'projects', 'describe']
+2022-05-13 14:04:20,648 DEBUG    root            Running [gcloud.projects.describe] with arguments: [--account: "britton.jenner@crowdriff.com", --configuration: "default", --format: "value(name)", PROJECT_ID_OR_NUMBER: "crowdriff-stories-dev"]
+2022-05-13 14:04:20,659 DEBUG    google.auth.transport.requests Making request: POST https://oauth2.googleapis.com/token
+2022-05-13 14:04:20,708 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2022-05-13 14:04:20,829 DEBUG    urllib3.connectionpool https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2022-05-13 14:04:20,873 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): cloudresourcemanager.googleapis.com:443
+2022-05-13 14:04:21,101 DEBUG    urllib3.connectionpool https://cloudresourcemanager.googleapis.com:443 "GET /v1/projects/crowdriff-stories-dev?alt=json HTTP/1.1" 200 None
+2022-05-13 14:04:21,102 INFO     root            Display format: "default value(name)"
+2022-05-13 14:04:21,102 INFO     ___FILE_ONLY___ stories-dev
+
+2022-05-13 14:04:21,104 DEBUG    root            Checking for updates...
+2022-05-13 14:04:21,139 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): dl.google.com:443
+2022-05-13 14:04:21,229 DEBUG    urllib3.connectionpool https://dl.google.com:443 "GET /dl/cloudsdk/channels/rapid/components-2.json HTTP/1.1" 200 187088
+2022-05-13 14:04:21,326 DEBUG    root            Metrics reporting process started...

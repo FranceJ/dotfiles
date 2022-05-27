@@ -1,0 +1,30 @@
+2022-05-25 15:28:06,898 DEBUG    root            Loaded Command Group: ['gcloud', 'config']
+2022-05-25 15:28:06,898 DEBUG    root            Loaded Command Group: ['gcloud', 'config', 'config_helper']
+2022-05-25 15:28:06,899 DEBUG    root            Running [gcloud.config.config-helper] with arguments: [--format: "json"]
+2022-05-25 15:28:06,902 INFO     root            Display format: "default json"
+2022-05-25 15:28:06,902 INFO     ___FILE_ONLY___ {
+  "configuration": {
+    "active_configuration": "default",
+    "properties": {
+      "compute": {
+        "zone": "us-central1"
+      },
+      "core": {
+        "account": "britton.jenner@crowdriff.com",
+        "disable_usage_reporting": "False",
+        "project": "crowdriff-stories-dev"
+      }
+    }
+  },
+  "credential": {
+    "access_token": "ya29.a0ARrdaM9d-jN4sy10gkwjLe9V5JY4RNmCWMV1Y3_lNcN2lknpn-OLMKCqNaSpgMejtPnLinkQDS14oWsX9BVtrcyJd6d95LdQbgmqabjJscpI94YDQ4krJMMQS7yudDpYWpGfHiQWQ8afhavIenDBfMqo0dnEvSsDIlRbIto",
+    "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ4NmYxNjQ4MjAwNWEyY2RhZjI2ZDkyMTQwMThkMDI5Y2E0NmZiNTYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIzMjU1NTk0MDU1OS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6IjMyNTU1OTQwNTU5LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA0NzU3Njk2MTMwOTc4MTMyNDM4IiwiaGQiOiJjcm93ZHJpZmYuY29tIiwiZW1haWwiOiJicml0dG9uLmplbm5lckBjcm93ZHJpZmYuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJQRnhlOThzaElqM01WeDNaQldETW5RIiwiaWF0IjoxNjUzNTA0MjE0LCJleHAiOjE2NTM1MDc4MTR9.a9OWBki6OCjFThEmHQIo_krje0hZd4epheaIzawS3kHD88b97t13086z_mF1yMYiI6mdswgWaPaht52VeWRS9YugBs79SMi04D1HOj1GbrudcVTml15Ca3wHIOAHL4mmmBqtexBILy3FOXNglrxbZcCd-fKjknrtlTtjHm4Q5zVvJ_ZA5ZKSkvzyJTJsn0DpidVGwJW5NkDFEDHlzLI5RHg3x6rqbj8ZdOudY05C2CB6rDXCkJu7_0Lux6gfNiOHALAT3i3ggFPZpVYCDp5i9UGMW2OtwJ5F0SF_vQzq6ATzgd28HMZ2Dm0eDPVxwEaOOWJ8WvZJpIsDrnOMPsSc4g",
+    "token_expiry": "2022-05-25T19:43:33Z"
+  },
+  "sentinels": {
+    "config_sentinel": "/Users/britton.jenner/.config/gcloud/config_sentinel"
+  }
+}
+2022-05-25 15:28:06,902 INFO     ___FILE_ONLY___ 
+
+2022-05-25 15:28:06,905 DEBUG    root            Metrics reporting process started...

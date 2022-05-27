@@ -1,0 +1,23 @@
+2022-05-04 17:04:49,841 DEBUG    root            Loaded Command Group: ['gcloud', 'auth']
+2022-05-04 17:04:49,845 DEBUG    root            Loaded Command Group: ['gcloud', 'auth', 'print_identity_token']
+2022-05-04 17:04:49,846 DEBUG    root            Running [gcloud.auth.print-identity-token] with arguments: []
+2022-05-04 17:04:49,852 DEBUG    google.auth.transport.requests Making request: POST https://oauth2.googleapis.com/token
+2022-05-04 17:04:49,890 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2022-05-04 17:04:49,992 DEBUG    urllib3.connectionpool https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2022-05-04 17:04:49,994 INFO     root            Display format: "value(id_token)"
+2022-05-04 17:04:49,994 INFO     ___FILE_ONLY___ eyJhbGciOiJSUzI1NiIsImtpZCI6ImZjYmQ3ZjQ4MWE4MjVkMTEzZTBkMDNkZDk0ZTYwYjY5ZmYxNjY1YTIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIzMjU1NTk0MDU1OS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6IjMyNTU1OTQwNTU5LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA0NzU3Njk2MTMwOTc4MTMyNDM4IiwiaGQiOiJjcm93ZHJpZmYuY29tIiwiZW1haWwiOiJicml0dG9uLmplbm5lckBjcm93ZHJpZmYuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJXWUYyeXladHdCZWtFSE1sUGpKTTdBIiwiaWF0IjoxNjUxNjk4MjkwLCJleHAiOjE2NTE3MDE4OTB9.hi5eE7OqhcqEv6dsrodTZc9j6jtx205B3ie2NosCNsQKRx_KB1bU3BxNMI0QYSfZ6MRbADsKCxcC5J91Agk5KQ7g-zxz_p3oxrFHrBAfdD76oB24d_tzShWRi_A63Ax-V9SwehA0YFloSPTjgAQI5j3WjzkntGdb-M__kEPQvGxHe2YHBZ13bYsWW6hrjoY9Ai0f384rHr5n0DsNLCQ3kARcb0jAEBMJPVlhFKjcOVfktPVWgrTRziz7vG0yt77H3MkcIfotq9FPQW5IbiW0l7mBBAoA0yYe49FsfELUZ914t6zxAyRLu8-HlGfoQadDEkTsI7s36ErJ7_oaxJpnOQ
+
+2022-05-04 17:04:49,995 INFO     ___FILE_ONLY___ 
+
+Updates are available for some Cloud SDK components.  To install them,
+please run:
+  $ gcloud components update
+
+
+2022-05-04 17:04:49,997 INFO     ___FILE_ONLY___ 
+
+To take a quick anonymous survey, run:
+  $ gcloud survey
+
+
+2022-05-04 17:04:50,002 DEBUG    root            Metrics reporting process started...

@@ -1,0 +1,68 @@
+2022-05-25 11:28:14,525 DEBUG    root            Loaded Command Group: ['gcloud', 'functions']
+2022-05-25 11:28:14,570 DEBUG    root            Loaded Command Group: ['gcloud', 'functions', 'deploy']
+2022-05-25 11:28:14,581 DEBUG    root            Running [gcloud.functions.deploy] with arguments: [--entry-point: "entrypoint", --env-vars-file: "{'NODE_ENV': 'development', 'NODE_PATH': '.', 'GATEWAY_BASE': 'https://story-network-gateway.derp.website', 'SERVICE_ACCOUNT': 'github-actions@crowdriff-stories-dev.iam.gserviceaccount.com', 'GOOGLE_CLOUD_PROJECT': 'crowdriff-stories-dev', 'PUB_SUB_TOPIC': 'stories-es-sync'}", --memory: "256Mi", --runtime: "nodejs14", --source: "dist/", --timeout: "540", --trigger-topic: "stories-es-sync", NAME: "stories-es-sync"]
+2022-05-25 11:28:14,642 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): cloudfunctions.googleapis.com:443
+2022-05-25 11:28:14,847 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/projects/crowdriff-stories-dev/locations/us-central1/functions/stories-es-sync?alt=json HTTP/1.1" 200 None
+2022-05-25 11:28:14,851 INFO     root            Not using ignore file.
+2022-05-25 11:28:14,851 INFO     root            Not using ignore file.
+2022-05-25 11:28:14,876 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): cloudfunctions.googleapis.com:443
+2022-05-25 11:28:15,412 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "POST /v1/projects/crowdriff-stories-dev/locations/us-central1/functions:generateUploadUrl?alt=json HTTP/1.1" 200 None
+2022-05-25 11:28:15,456 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): storage.googleapis.com:443
+2022-05-25 11:28:15,704 DEBUG    urllib3.connectionpool https://storage.googleapis.com:443 "PUT /uploads-556841579775.us-central1.cloudfunctions.appspot.com/4e5b3dfc-eed5-4b7c-8276-9a1b6a0be660.zip?GoogleAccessId=service-31098141265%40gcf-admin-robot.iam.gserviceaccount.com&Expires=1653494295&Signature=DVDsRtr97YURzj6%2F163Sm4X25XzIBg3ppsJVnBWmeGONvV%2FL5UslU1tF2Jhf8xwgmF8wddIhUAU4bCE9Mj81vO4sBKz1ZMrrRjLZgm3MDBwefKhsmkOa5BqahO%2FqgWvrsI%2Bim5CqNuv8GPu1WC%2FjiDycvOCIwS5AQj9h44phjb7a0tMZdsXMw%2BzvojjtAawORD9QYXznEO0uEUZwX15qS2m9Qb5C6DtzYk3NkwQAQZ8Y149FfIkaV7%2BxSTz33%2FdHWmg0VeIRhLzYgGGRvkIO2gFvTGQbwKRWOiiQcd9WU4J2cFbzT45%2FaruZyAuEtOiV3%2Fd2KFGbJUbO%2FIP1HpkH%2BA%3D%3D HTTP/1.1" 200 0
+2022-05-25 11:28:15,720 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): cloudfunctions.googleapis.com:443
+2022-05-25 11:28:16,048 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "PATCH /v1/projects/crowdriff-stories-dev/locations/us-central1/functions/stories-es-sync?alt=json&updateMask=availableMemoryMb%2CentryPoint%2CeventTrigger%2ChttpsTrigger%2Cruntime%2CsourceUploadUrl%2Ctimeout HTTP/1.1" 400 None
+2022-05-25 11:28:16,049 DEBUG    root            (gcloud.functions.deploy) ResponseError: status=[400], code=[Ok], message=[An operation on function stories-es-sync in region us-central1 in project crowdriff-stories-dev is already in progress. Please try again later.]
+Traceback (most recent call last):
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/api_lib/functions/v1/util.py", line 388, in CatchHTTPErrorRaiseHTTPExceptionFn
+    return func(*args, **kwargs)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/api_lib/functions/v1/util.py", line 457, in PatchFunction
+    return client.projects_locations_functions.Patch(
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/third_party/apis/cloudfunctions/v1/cloudfunctions_v1_client.py", line 346, in Patch
+    return self._RunMethod(
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/third_party/apitools/base/py/base_api.py", line 737, in _RunMethod
+    return self.ProcessHttpResponse(method_config, http_response, request)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/third_party/apitools/base/py/base_api.py", line 743, in ProcessHttpResponse
+    self.__ProcessHttpResponse(method_config, http_response, request))
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/third_party/apitools/base/py/base_api.py", line 609, in __ProcessHttpResponse
+    raise exceptions.HttpError.FromResponse(
+apitools.base.py.exceptions.HttpBadRequestError: HttpError accessing <https://cloudfunctions.googleapis.com/v1/projects/crowdriff-stories-dev/locations/us-central1/functions/stories-es-sync?alt=json&updateMask=availableMemoryMb%2CentryPoint%2CeventTrigger%2ChttpsTrigger%2Cruntime%2CsourceUploadUrl%2Ctimeout>: response: <{'vary': 'Origin, X-Origin, Referer', 'content-type': 'application/json; charset=UTF-8', 'content-encoding': 'gzip', 'date': 'Wed, 25 May 2022 15:28:16 GMT', 'server': 'ESF', 'cache-control': 'private', 'x-xss-protection': '0', 'x-frame-options': 'SAMEORIGIN', 'x-content-type-options': 'nosniff', 'alt-svc': 'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"', 'transfer-encoding': 'chunked', 'status': 400}>, content <{
+  "error": {
+    "code": 400,
+    "message": "An operation on function stories-es-sync in region us-central1 in project crowdriff-stories-dev is already in progress. Please try again later.",
+    "status": "FAILED_PRECONDITION"
+  }
+}
+>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/calliope/cli.py", line 987, in Execute
+    resources = calliope_command.Run(cli=self, args=args)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/calliope/backend.py", line 809, in Run
+    resources = command_instance.Run(args)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/surface/functions/deploy.py", line 91, in Run
+    return command_v1.Run(args, track=self.ReleaseTrack())
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/command_lib/functions/v1/deploy/command.py", line 520, in Run
+    op = api_util.PatchFunction(function, updated_fields)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/api_lib/functions/v1/util.py", line 390, in CatchHTTPErrorRaiseHTTPExceptionFn
+    core_exceptions.reraise(
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/core/exceptions.py", line 146, in reraise
+    six.reraise(type(exc_value), exc_value, tb)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/third_party/six/__init__.py", line 692, in reraise
+    raise value.with_traceback(tb)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/api_lib/functions/v1/util.py", line 388, in CatchHTTPErrorRaiseHTTPExceptionFn
+    return func(*args, **kwargs)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/api_lib/functions/v1/util.py", line 457, in PatchFunction
+    return client.projects_locations_functions.Patch(
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/third_party/apis/cloudfunctions/v1/cloudfunctions_v1_client.py", line 346, in Patch
+    return self._RunMethod(
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/third_party/apitools/base/py/base_api.py", line 737, in _RunMethod
+    return self.ProcessHttpResponse(method_config, http_response, request)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/third_party/apitools/base/py/base_api.py", line 743, in ProcessHttpResponse
+    self.__ProcessHttpResponse(method_config, http_response, request))
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/third_party/apitools/base/py/base_api.py", line 609, in __ProcessHttpResponse
+    raise exceptions.HttpError.FromResponse(
+googlecloudsdk.calliope.exceptions.HttpException: ResponseError: status=[400], code=[Ok], message=[An operation on function stories-es-sync in region us-central1 in project crowdriff-stories-dev is already in progress. Please try again later.]
+2022-05-25 11:28:16,061 ERROR    root            (gcloud.functions.deploy) ResponseError: status=[400], code=[Ok], message=[An operation on function stories-es-sync in region us-central1 in project crowdriff-stories-dev is already in progress. Please try again later.]
+2022-05-25 11:28:16,077 DEBUG    root            Metrics reporting process started...

@@ -1,0 +1,124 @@
+2022-05-02 18:41:19,709 DEBUG    root            Loaded Command Group: ['gcloud', 'config']
+2022-05-02 18:41:19,711 DEBUG    root            Loaded Command Group: ['gcloud', 'config', 'config_helper']
+2022-05-02 18:41:19,713 DEBUG    root            Running [gcloud.config.config-helper] with arguments: [--format: "json", --min-expiry: "3600"]
+2022-05-02 18:41:19,724 DEBUG    google.auth.transport.requests Making request: POST https://oauth2.googleapis.com/token
+2022-05-02 18:41:19,773 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2022-05-02 18:41:19,888 DEBUG    urllib3.connectionpool https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2022-05-02 18:41:19,890 DEBUG    google.auth.transport.requests Making request: POST https://oauth2.googleapis.com/token
+2022-05-02 18:41:19,891 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2022-05-02 18:41:20,010 DEBUG    urllib3.connectionpool https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2022-05-02 18:41:20,014 INFO     root            Display format: "default json"
+2022-05-02 18:41:20,014 INFO     ___FILE_ONLY___ {
+  "configuration": {
+    "active_configuration": "default",
+    "properties": {
+      "compute": {
+        "zone": "us-central1"
+      },
+      "core": {
+        "account": "britton.jenner@crowdriff.com",
+        "disable_usage_reporting": "False",
+        "project": "crowdriff-stories-dev"
+      }
+    }
+  },
+  "credential": {
+    "access_token": "ya29.A0ARrdaM8RUlqWyShj1bfgnbPIYKo2o3UIWS8K0hozeokEWLa9uI-U3LFYRQBj3A2x6z3GKqwbN6YFEF8OkpWVBmdC1PpH5-QJeVLNij4A5ficC4f5r_zTboUL_GMNNViBGkPaTgB8kUw8zxrJyOckzBun_3SPrAABB9V3cmY",
+    "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6Ijg2MTY0OWU0NTAzMTUzODNmNmI5ZDUxMGI3Y2Q0ZTkyMjZjM2NkODgiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIzMjU1NTk0MDU1OS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6IjMyNTU1OTQwNTU5LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA0NzU3Njk2MTMwOTc4MTMyNDM4IiwiaGQiOiJjcm93ZHJpZmYuY29tIiwiZW1haWwiOiJicml0dG9uLmplbm5lckBjcm93ZHJpZmYuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJxWFJ6djV4NzN5OS1XR2VtMnkxb0hRIiwiaWF0IjoxNjUxNTMxMjgwLCJleHAiOjE2NTE1MzQ4ODB9.ZJ53Ix3qGa2igOgFTddcqsIfejByIl4tiTp9qWhFEo1n9F1OHzXmZfd3hli3jehKkhO79MzLQ9Jls3aRDda-Za92H6ShgjxALmAMLyT97o5klDUoZZwa7OUjNw-i8VFwvUvGde4t6DV-Iw8rIm3T0OmO50ZshLEo7QbmzZpgPEna56zL_TaRaQvkjANIsH5Nf_DZJROJbdMszFKQxyUlpKipipmgL3gV3WifcyxQiYgmF6WzO5t4Hn6s2W17-EVe39JFZM5KYMDpMUjbcNV79G4gcIpnPeqcXp1gyp6B2ZA2CThm1t0M4CI5DBZ5sEeVXg91r7g9ggKMKh_yVU8zmA",
+    "token_expiry": "2022-05-02T23:41:19Z"
+  },
+  "sentinels": {
+    "config_sentinel": "/Users/britton.jenner/.config/gcloud/config_sentinel"
+  }
+}
+2022-05-02 18:41:20,014 INFO     ___FILE_ONLY___ 
+
+2022-05-02 18:41:20,015 DEBUG    root            Checking for updates...
+2022-05-02 18:41:20,049 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): dl.google.com:443
+2022-05-02 18:41:23,096 DEBUG    root            Failed to perform update check.
+Traceback (most recent call last):
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/third_party/urllib3/connectionpool.py", line 426, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/third_party/urllib3/connectionpool.py", line 421, in _make_request
+    httplib_response = conn.getresponse()
+  File "/opt/homebrew/Cellar/python@3.9/3.9.8/Frameworks/Python.framework/Versions/3.9/lib/python3.9/http/client.py", line 1377, in getresponse
+    response.begin()
+  File "/opt/homebrew/Cellar/python@3.9/3.9.8/Frameworks/Python.framework/Versions/3.9/lib/python3.9/http/client.py", line 320, in begin
+    version, status, reason = self._read_status()
+  File "/opt/homebrew/Cellar/python@3.9/3.9.8/Frameworks/Python.framework/Versions/3.9/lib/python3.9/http/client.py", line 281, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/opt/homebrew/Cellar/python@3.9/3.9.8/Frameworks/Python.framework/Versions/3.9/lib/python3.9/socket.py", line 704, in readinto
+    return self._sock.recv_into(b)
+  File "/opt/homebrew/Cellar/python@3.9/3.9.8/Frameworks/Python.framework/Versions/3.9/lib/python3.9/ssl.py", line 1241, in recv_into
+    return self.read(nbytes, buffer)
+  File "/opt/homebrew/Cellar/python@3.9/3.9.8/Frameworks/Python.framework/Versions/3.9/lib/python3.9/ssl.py", line 1099, in read
+    return self._sslobj.read(len, buffer)
+socket.timeout: The read operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/third_party/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/third_party/urllib3/connectionpool.py", line 724, in urlopen
+    retries = retries.increment(
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/third_party/urllib3/util/retry.py", line 403, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/third_party/urllib3/packages/six.py", line 735, in reraise
+    raise value
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/third_party/urllib3/connectionpool.py", line 670, in urlopen
+    httplib_response = self._make_request(
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/third_party/urllib3/connectionpool.py", line 428, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/third_party/urllib3/connectionpool.py", line 335, in _raise_timeout
+    raise ReadTimeoutError(
+urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='dl.google.com', port=443): Read timed out. (read timeout=3)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/gcloud_main.py", line 63, in UpdateCheck
+    update_manager.UpdateManager.PerformUpdateCheck(command_path=command_path)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/core/updater/update_manager.py", line 270, in PerformUpdateCheck
+    manager._PerformUpdateCheck(command_path, force=force)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/core/updater/update_manager.py", line 697, in _PerformUpdateCheck
+    (_, diff) = self._GetStateAndDiff(
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/core/updater/update_manager.py", line 652, in _GetStateAndDiff
+    latest_snapshot = self._GetLatestSnapshot(version=version,
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/core/updater/update_manager.py", line 635, in _GetLatestSnapshot
+    return snapshots.ComponentSnapshot.FromURLs(
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/core/updater/snapshots.py", line 175, in FromURLs
+    data = [
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/core/updater/snapshots.py", line 176, in <listcomp>
+    (ComponentSnapshot._DictFromURL(
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/core/updater/snapshots.py", line 200, in _DictFromURL
+    response = installers.MakeRequest(url, command_path)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/core/updater/installers.py", line 114, in MakeRequest
+    return _RawRequest(url, headers=headers, timeout=timeout)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/core/updater/installers.py", line 162, in _RawRequest
+    return retryer.RetryOnException(
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/core/util/retry.py", line 201, in RetryOnException
+    exceptions.reraise(exc_info[1], tb=exc_info[2])
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/core/exceptions.py", line 146, in reraise
+    six.reraise(type(exc_value), exc_value, tb)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/third_party/six/__init__.py", line 693, in reraise
+    raise value
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/core/util/retry.py", line 182, in TryFunc
+    return func(*args, **kwargs), None
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/core/updater/installers.py", line 192, in _ExecuteRequestAndRaiseExceptions
+    response = requests_session.get(
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/third_party/requests/sessions.py", line 546, in get
+    return self.request('GET', url, **kwargs)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/core/transport.py", line 251, in WrappedRequest
+    response = orig_request(*modified_args, **modified_kwargs)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/googlecloudsdk/core/requests.py", line 216, in WrappedRequest
+    return orig_request_method(*args, **kwargs)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/third_party/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/third_party/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/lib/third_party/requests/adapters.py", line 529, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='dl.google.com', port=443): Read timed out. (read timeout=3)
+2022-05-02 18:41:23,112 DEBUG    root            Metrics reporting process started...

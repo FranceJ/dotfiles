@@ -1,0 +1,25 @@
+2022-05-06 10:31:38,975 DEBUG    root            Loaded Command Group: ['gcloud', 'identity']
+2022-05-06 10:31:38,976 DEBUG    root            Running [gcloud.identity] with arguments: [--help: "None"]
+2022-05-06 10:31:38,976 DEBUG    root            Loaded Command Group: ['gcloud', 'identity', 'groups']
+2022-05-06 10:31:38,979 DEBUG    root            Loaded Command Group: ['gcloud', 'help']
+2022-05-06 10:31:38,981 INFO     ___FILE_ONLY___ [m[1mNAME[m
+    gcloud identity - manage Cloud Identity Groups and Memberships resources
+
+[m[1mSYNOPSIS[m
+    [1mgcloud identity[m [4mGROUP[m [[4mGCLOUD_WIDE_FLAG ...[m]
+
+[m[1mDESCRIPTION[m
+    Commands for managing Cloud Identity Groups and Memberships resources.
+
+[m[1mGCLOUD WIDE FLAGS[m
+    These flags are available to all commands: --help.
+
+    Run [1m$ gcloud help[m for details.
+
+[m[1mGROUPS[m
+    [1m[1;4mGROUP[1m[m is one of the following:
+
+     [1mgroups[m
+        Manage Cloud Identity Groups.
+[m
+2022-05-06 10:31:48,405 DEBUG    root            Metrics reporting process started...

@@ -1,0 +1,10 @@
+2022-05-06 15:36:14,331 DEBUG    root            Loaded Command Group: ['gcloud', 'auth']
+2022-05-06 15:36:14,338 DEBUG    root            Loaded Command Group: ['gcloud', 'auth', 'print_identity_token']
+2022-05-06 15:36:14,339 DEBUG    root            Running [gcloud.auth.print-identity-token] with arguments: []
+2022-05-06 15:36:14,351 DEBUG    google.auth.transport.requests Making request: POST https://oauth2.googleapis.com/token
+2022-05-06 15:36:14,361 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2022-05-06 15:36:14,474 DEBUG    urllib3.connectionpool https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2022-05-06 15:36:14,476 INFO     root            Display format: "value(id_token)"
+2022-05-06 15:36:14,476 INFO     ___FILE_ONLY___ eyJhbGciOiJSUzI1NiIsImtpZCI6ImZjYmQ3ZjQ4MWE4MjVkMTEzZTBkMDNkZDk0ZTYwYjY5ZmYxNjY1YTIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIzMjU1NTk0MDU1OS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6IjMyNTU1OTQwNTU5LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA0NzU3Njk2MTMwOTc4MTMyNDM4IiwiaGQiOiJjcm93ZHJpZmYuY29tIiwiZW1haWwiOiJicml0dG9uLmplbm5lckBjcm93ZHJpZmYuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJkY3V0aXVHU3ByakVWTFM4OVk2YlpRIiwiaWF0IjoxNjUxODY1Nzc0LCJleHAiOjE2NTE4NjkzNzR9.AjooIC2AI8QZv5sPbFYpCJ_yelhm5hsF1wDAkXVYX7FRzv9QXQIqcjW_DjbY5u9e8F2Ez9HOtShYdBPw7r_tlbCVqZMqe7BL9D0U5nqVXO0ngvisymjwAaKbQbLcDkEQeUzDrJ-hros6JdxXmlMGGYbwyFc-v17Zx7dMFyMBjUukpvVDgykv7tPmW4KYCxO7eePqtCcoKqmXlz93EdyvAZ-tniCWItYnJJZ8ZmjhECDxZNovaps4Bw2-CFpGwl3uieVP1hrRolP_sC7F6qHnH1zRY3b8neneyMm7dKG0lRy-6t_Eivb_zAIPMK4QzVSAP1QdgGHbKuzFRZiOaggqFQ
+
+2022-05-06 15:36:14,481 DEBUG    root            Metrics reporting process started...

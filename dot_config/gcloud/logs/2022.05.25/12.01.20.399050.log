@@ -1,0 +1,282 @@
+2022-05-25 12:01:20,401 DEBUG    root            Loaded Command Group: ['gcloud', 'functions']
+2022-05-25 12:01:20,437 DEBUG    root            Loaded Command Group: ['gcloud', 'functions', 'deploy']
+2022-05-25 12:01:20,446 DEBUG    root            Running [gcloud.functions.deploy] with arguments: [--entry-point: "entrypoint", --env-vars-file: "{'NODE_ENV': 'development', 'NODE_PATH': '.', 'GATEWAY_BASE': 'https://story-network-gateway.derp.website', 'SERVICE_ACCOUNT': 'github-actions@crowdriff-stories-dev.iam.gserviceaccount.com', 'GOOGLE_CLOUD_PROJECT': 'crowdriff-stories-dev', 'PUB_SUB_TOPIC': 'stories-es-sync'}", --memory: "256Mi", --runtime: "nodejs14", --source: "dist/", --timeout: "540", --trigger-topic: "stories-es-sync", NAME: "stories-es-sync"]
+2022-05-25 12:01:20,502 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): cloudfunctions.googleapis.com:443
+2022-05-25 12:01:20,707 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/projects/crowdriff-stories-dev/locations/us-central1/functions/stories-es-sync?alt=json HTTP/1.1" 200 None
+2022-05-25 12:01:20,714 INFO     root            Not using ignore file.
+2022-05-25 12:01:20,715 INFO     root            Not using ignore file.
+2022-05-25 12:01:20,735 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): cloudfunctions.googleapis.com:443
+2022-05-25 12:01:21,433 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "POST /v1/projects/crowdriff-stories-dev/locations/us-central1/functions:generateUploadUrl?alt=json HTTP/1.1" 200 None
+2022-05-25 12:01:21,474 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): storage.googleapis.com:443
+2022-05-25 12:01:21,732 DEBUG    urllib3.connectionpool https://storage.googleapis.com:443 "PUT /uploads-556841579775.us-central1.cloudfunctions.appspot.com/0ed19b00-6270-4878-a1d0-ecacdd45e199.zip?GoogleAccessId=service-31098141265%40gcf-admin-robot.iam.gserviceaccount.com&Expires=1653496281&Signature=VPO8%2FiUuv2BELzsozWxYTHGO4di%2FagsAI4mA1dtBKuYEiTDJO3Mvrwab%2FX%2BgInYCZsKEEFqiIzJ2N9MoEU5SYD9GBg21YVDeQpPEPvYf4VcB2Ddh4vvrMjC%2BX9%2FEkrNChTJ9VHfbw7A2ym5gBV5zNOOhp7pbCKhrbllcF1pyesLNL6oLsLEGBwLI6PPq1KGraTQRb6Au6Cb09OIwkXJms%2Ffxciu2Xl3RMgbiNYI%2BtTzGKetd7J1ck5EDr4NeoSfp2k61a5YgFvEV5SyCNP0Nozh2Loc0Nq4J%2FQQusBK6nwoNSaS2D9ME2Zx9KZYsTF%2B4puW0x5yFfguV6wtgi6haeA%3D%3D HTTP/1.1" 200 0
+2022-05-25 12:01:21,750 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): cloudfunctions.googleapis.com:443
+2022-05-25 12:01:22,106 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "PATCH /v1/projects/crowdriff-stories-dev/locations/us-central1/functions/stories-es-sync?alt=json&updateMask=availableMemoryMb%2CentryPoint%2CeventTrigger%2ChttpsTrigger%2Cruntime%2CsourceUploadUrl%2Ctimeout HTTP/1.1" 200 None
+2022-05-25 12:01:22,113 INFO     ___FILE_ONLY___ Deploying function (may take a while - up to 2 minutes)...
+2022-05-25 12:01:22,117 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): cloudfunctions.googleapis.com:443
+2022-05-25 12:01:22,319 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:01:24,023 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:01:24,032 INFO     ___FILE_ONLY___ 
+For Cloud Build Logs, visit: https://console.cloud.google.com/cloud-build/builds;region=us-central1/3ff3fb8b-1c4e-4c03-a4e8-6790e53e03ad?project=31098141265
+
+2022-05-25 12:01:25,264 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:01:26,588 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:01:28,032 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:01:29,224 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:01:30,775 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:01:32,290 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:01:34,230 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:01:35,515 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:01:37,147 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:01:38,909 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:01:40,345 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:01:42,460 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:01:43,605 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:01:45,731 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:01:47,041 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:01:48,764 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:01:50,747 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:01:51,968 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:01:53,665 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:01:55,375 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:01:57,036 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:01:58,844 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:00,472 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:02,093 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:03,406 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:05,383 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:06,665 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:08,008 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:09,600 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:11,504 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:13,256 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:14,901 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:16,285 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:17,536 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:19,632 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:21,618 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:23,098 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:24,286 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:26,391 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:27,619 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:28,825 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:30,571 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:32,253 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:34,113 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:35,947 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:37,106 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:38,807 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:40,690 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:41,852 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:43,923 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:45,252 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:47,309 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:48,468 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:49,708 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:51,565 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:52,907 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:54,090 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:55,616 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:56,895 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:02:58,925 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:03:00,250 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:03:01,819 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:03:03,681 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:03:05,495 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:03:07,466 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:03:09,613 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:03:11,409 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:03:12,808 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:03:14,524 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:03:15,776 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:03:17,603 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:03:18,985 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:03:20,988 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:03:22,665 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:03:24,582 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:03:25,900 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:03:27,921 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:03:30,011 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:03:31,269 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:03:33,124 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:03:34,690 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:03:36,616 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:03:38,016 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/operations/Y3Jvd2RyaWZmLXN0b3JpZXMtZGV2L3VzLWNlbnRyYWwxL3N0b3JpZXMtZXMtc3luYy8yN21fZWdETERzTQ?alt=json HTTP/1.1" 200 None
+2022-05-25 12:03:38,048 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): cloudfunctions.googleapis.com:443
+2022-05-25 12:03:38,244 DEBUG    urllib3.connectionpool https://cloudfunctions.googleapis.com:443 "GET /v1/projects/crowdriff-stories-dev/locations/us-central1/functions/stories-es-sync?alt=json HTTP/1.1" 200 None
+2022-05-25 12:03:38,255 INFO     root            Display format: "default"
+2022-05-25 12:03:38,262 INFO     ___FILE_ONLY___ availableMemoryMb
+2022-05-25 12:03:38,262 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,263 INFO     ___FILE_ONLY___  
+2022-05-25 12:03:38,263 INFO     ___FILE_ONLY___ 256
+2022-05-25 12:03:38,263 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,263 INFO     ___FILE_ONLY___ buildId
+2022-05-25 12:03:38,264 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,264 INFO     ___FILE_ONLY___  
+2022-05-25 12:03:38,264 INFO     ___FILE_ONLY___ 3ff3fb8b-1c4e-4c03-a4e8-6790e53e03ad
+2022-05-25 12:03:38,265 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,265 INFO     ___FILE_ONLY___ buildName
+2022-05-25 12:03:38,265 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,265 INFO     ___FILE_ONLY___  
+2022-05-25 12:03:38,266 INFO     ___FILE_ONLY___ projects/31098141265/locations/us-central1/builds/3ff3fb8b-1c4e-4c03-a4e8-6790e53e03ad
+2022-05-25 12:03:38,266 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,266 INFO     ___FILE_ONLY___ dockerRegistry
+2022-05-25 12:03:38,266 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,266 INFO     ___FILE_ONLY___  
+2022-05-25 12:03:38,266 INFO     ___FILE_ONLY___ CONTAINER_REGISTRY
+2022-05-25 12:03:38,267 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,267 INFO     ___FILE_ONLY___ entryPoint
+2022-05-25 12:03:38,267 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,267 INFO     ___FILE_ONLY___  
+2022-05-25 12:03:38,267 INFO     ___FILE_ONLY___ entrypoint
+2022-05-25 12:03:38,267 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,267 INFO     ___FILE_ONLY___ environmentVariables
+2022-05-25 12:03:38,268 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,268 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,268 INFO     ___FILE_ONLY___   
+2022-05-25 12:03:38,268 INFO     ___FILE_ONLY___ GATEWAY_BASE
+2022-05-25 12:03:38,268 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,268 INFO     ___FILE_ONLY___  
+2022-05-25 12:03:38,268 INFO     ___FILE_ONLY___ https://story-network-gateway.derp.website
+2022-05-25 12:03:38,268 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,268 INFO     ___FILE_ONLY___   
+2022-05-25 12:03:38,269 INFO     ___FILE_ONLY___ GOOGLE_CLOUD_PROJECT
+2022-05-25 12:03:38,269 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,269 INFO     ___FILE_ONLY___  
+2022-05-25 12:03:38,269 INFO     ___FILE_ONLY___ crowdriff-stories-dev
+2022-05-25 12:03:38,269 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,269 INFO     ___FILE_ONLY___   
+2022-05-25 12:03:38,269 INFO     ___FILE_ONLY___ NODE_ENV
+2022-05-25 12:03:38,269 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,270 INFO     ___FILE_ONLY___  
+2022-05-25 12:03:38,270 INFO     ___FILE_ONLY___ development
+2022-05-25 12:03:38,270 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,270 INFO     ___FILE_ONLY___   
+2022-05-25 12:03:38,270 INFO     ___FILE_ONLY___ NODE_PATH
+2022-05-25 12:03:38,270 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,270 INFO     ___FILE_ONLY___  
+2022-05-25 12:03:38,270 INFO     ___FILE_ONLY___ .
+2022-05-25 12:03:38,270 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,271 INFO     ___FILE_ONLY___   
+2022-05-25 12:03:38,271 INFO     ___FILE_ONLY___ PUB_SUB_TOPIC
+2022-05-25 12:03:38,271 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,271 INFO     ___FILE_ONLY___  
+2022-05-25 12:03:38,271 INFO     ___FILE_ONLY___ stories-es-sync
+2022-05-25 12:03:38,271 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,271 INFO     ___FILE_ONLY___   
+2022-05-25 12:03:38,271 INFO     ___FILE_ONLY___ SERVICE_ACCOUNT
+2022-05-25 12:03:38,271 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,271 INFO     ___FILE_ONLY___  
+2022-05-25 12:03:38,271 INFO     ___FILE_ONLY___ github-actions@crowdriff-stories-dev.iam.gserviceaccount.com
+2022-05-25 12:03:38,271 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,271 INFO     ___FILE_ONLY___ eventTrigger
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___   
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___ eventType
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___  
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___ google.pubsub.topic.publish
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___   
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___ failurePolicy
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___  {
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___ }
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___   
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___ resource
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___  
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___ projects/crowdriff-stories-dev/topics/stories-es-sync
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___   
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___ service
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___  
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___ pubsub.googleapis.com
+2022-05-25 12:03:38,272 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,273 INFO     ___FILE_ONLY___ ingressSettings
+2022-05-25 12:03:38,273 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,273 INFO     ___FILE_ONLY___  
+2022-05-25 12:03:38,273 INFO     ___FILE_ONLY___ ALLOW_ALL
+2022-05-25 12:03:38,273 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,273 INFO     ___FILE_ONLY___ labels
+2022-05-25 12:03:38,273 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,273 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,273 INFO     ___FILE_ONLY___   
+2022-05-25 12:03:38,273 INFO     ___FILE_ONLY___ deployment-tool
+2022-05-25 12:03:38,273 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,273 INFO     ___FILE_ONLY___  
+2022-05-25 12:03:38,273 INFO     ___FILE_ONLY___ cli-gcloud
+2022-05-25 12:03:38,273 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,273 INFO     ___FILE_ONLY___ name
+2022-05-25 12:03:38,273 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,273 INFO     ___FILE_ONLY___  
+2022-05-25 12:03:38,273 INFO     ___FILE_ONLY___ projects/crowdriff-stories-dev/locations/us-central1/functions/stories-es-sync
+2022-05-25 12:03:38,273 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,273 INFO     ___FILE_ONLY___ runtime
+2022-05-25 12:03:38,273 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,273 INFO     ___FILE_ONLY___  
+2022-05-25 12:03:38,273 INFO     ___FILE_ONLY___ nodejs14
+2022-05-25 12:03:38,273 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,273 INFO     ___FILE_ONLY___ serviceAccountEmail
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___  
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___ crowdriff-stories-dev@appspot.gserviceaccount.com
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___ sourceUploadUrl
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___  
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___ https://storage.googleapis.com/uploads-556841579775.us-central1.cloudfunctions.appspot.com/0ed19b00-6270-4878-a1d0-ecacdd45e199.zip
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___ status
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___  
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___ ACTIVE
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___ timeout
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___  
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___ 540s
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___ updateTime
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___  '
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___ 2022-05-25T16:03:37.907Z
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___ '
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,274 INFO     ___FILE_ONLY___ versionId
+2022-05-25 12:03:38,275 INFO     ___FILE_ONLY___ :
+2022-05-25 12:03:38,275 INFO     ___FILE_ONLY___  '
+2022-05-25 12:03:38,275 INFO     ___FILE_ONLY___ 23
+2022-05-25 12:03:38,275 INFO     ___FILE_ONLY___ '
+2022-05-25 12:03:38,275 INFO     ___FILE_ONLY___ 
+
+2022-05-25 12:03:38,288 DEBUG    root            Metrics reporting process started...
