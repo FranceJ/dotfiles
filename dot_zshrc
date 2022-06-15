@@ -155,8 +155,14 @@ alias start-c="yarn run start:dev"
 alias dev-tunnel="~/Dev/cloud_sql_proxy -instances=crowdriff-stories-dev:us-central1:stories=tcp:5433"
 alias prod-tunnel="~/Dev/cloud_sql_proxy -instances=crowdriff-stories-prod:us-central1:stories-prod=tcp:5434"
 alias es-tunnel="kubectl -n elastic-system port-forward svc/stories-es-http 9200:9200"
-alias gcprod="gcloud config set project crowdriff-stories-prod && gcloud container clusters get-credentials prod-cluster"
-alias gcdev="gcloud config set project crowdriff-stories-dev && gcloud container clusters get-credentials dev-cluster"
+alias gcprod="gcloud config set project crowdriff-stories-prod && gcloud config set compute/zone us-central1 && gcloud container clusters get-credentials prod-cluster"
+alias gcdev="gcloud config set project crowdriff-stories-dev && gcloud config set compute/zone us-central1 && gcloud container clusters get-credentials dev-cluster"
+
+# make commands
+alias dbuild="BUILD_ENV=staging make build"
+alias pbuild="BUILD_ENV=prod make build"
+alias ddeploy="BUILD_ENV=staging make deploy"
+alias pdeploy="BUILD_ENV=prod make deploy"
 
 source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
 
