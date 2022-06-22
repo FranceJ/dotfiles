@@ -145,6 +145,7 @@ alias mux="tmuxinator"
 alias gitD='git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d'
 alias kill-pubsub="ps -eaf | grep 9095 | awk '{print $2}' | xargs sudo kill -9"
 alias dockerkill="docker stop $(docker ps -a -q)"
+
 # Pretty git log
 alias lg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 
@@ -157,6 +158,8 @@ alias prod-tunnel="~/Dev/cloud_sql_proxy -instances=crowdriff-stories-prod:us-ce
 alias es-tunnel="kubectl -n elastic-system port-forward svc/stories-es-http 9200:9200"
 alias gcprod="gcloud config set project crowdriff-stories-prod && gcloud config set compute/zone us-central1 && gcloud container clusters get-credentials prod-cluster"
 alias gcdev="gcloud config set project crowdriff-stories-dev && gcloud config set compute/zone us-central1 && gcloud container clusters get-credentials dev-cluster"
+alias db-connect-dev="gcloud sql connect stories --user=brittonjenner --database=overlord"
+alias db-connect-prod="gcloud sql connect stories-prod --user=brittonjenner --database=overlord"
 
 # make commands
 alias dbuild="BUILD_ENV=staging make build"
