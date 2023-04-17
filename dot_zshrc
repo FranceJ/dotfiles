@@ -153,13 +153,17 @@ alias lg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %
 alias start-c="yarn run start:dev"
 
 # DB access
-alias dev-tunnel="~/Dev/cloud_sql_proxy -instances=crowdriff-stories-dev:us-central1:stories=tcp:5433"
-alias prod-tunnel="~/Dev/cloud_sql_proxy -instances=crowdriff-stories-prod:us-central1:stories-prod=tcp:5434"
+alias dev-tunnel="cloud-sql-proxy -g crowdriff-stories-dev:us-central1:stories -p 5433"
+alias prod-tunnel="cloud-sql-proxy -g crowdriff-stories-prod:us-central1:stories-prod -p 5434"
 alias es-tunnel="kubectl -n elastic-system port-forward svc/stories-es-http 9200:9200"
-alias gcprod="gcloud config set project crowdriff-stories-prod && gcloud config set compute/zone us-central1 && gcloud container clusters get-credentials prod-cluster"
-alias gcdev="gcloud config set project crowdriff-stories-dev && gcloud config set compute/zone us-central1 && gcloud container clusters get-credentials dev-cluster"
-alias db-connect-dev="gcloud sql connect stories --user=brittonjenner --database=overlord"
-alias db-connect-prod="gcloud sql connect stories-prod --user=brittonjenner --database=overlord"
+alias gcprod="gcloud config set project crowdriff-stories-prod && gcloud config set compute/region us-central1 && gcloud container clusters get-credentials prod-cluster"
+alias gcdev="gcloud config set project crowdriff-stories-dev && gcloud config set compute/region us-central1 && gcloud container clusters get-credentials dev-cluster"
+alias stories-connect-dev="gcloud config set project crowdriff-stories-dev && gcloud config set compute/region us-central1 && gcloud container clusters get-credentials dev-cluster && gcloud sql connect stories --user=brittonjenner --database=overlord"
+alias stories-connect-prod="gcloud config set project crowdriff-stories-prod && gcloud config set compute/region us-central1 && gcloud container clusters get-credentials prod-cluster && gcloud sql connect stories-prod --user=brittonjenner --database=overlord"
+alias challenges-connect-dev="gcloud config set project crowdriff-stories-dev && gcloud config set compute/region us-central1 && gcloud container clusters get-credentials dev-cluster && gcloud sql connect story-challenges-staging --user=brittonjenner --database=story_challenges"
+alias challenges-connect-prod="gcloud config set project crowdriff-stories-prod && gcloud config set compute/region us-central1 && gcloud container clusters get-credentials prod-cluster && gcloud sql connect story-challenges --user=brittonjenner --database=story_challenges"
+alias staging-challenges-pg="cloud-sql-proxy -g crowdriff-stories-dev:us-central1:story-challenges-staging -p 5435"
+alias prod-challenges-pg="cloud-sql-proxy -g crowdriff-stories-prod:us-central1:story-challenges -p 5436"
 
 # make commands
 alias dbuild="BUILD_ENV=staging make build"
@@ -167,14 +171,21 @@ alias pbuild="BUILD_ENV=prod make build"
 alias ddeploy="BUILD_ENV=staging make deploy"
 alias pdeploy="BUILD_ENV=prod make deploy"
 
+# docker
+alias docker-start="colima start --profile amd64 -a x86_64 --cpu 4 --memory 4"
+
 source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 export EDITOR="vim"
 
+# Docker
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
+
 # Golang
+# export GOROOT=/opt/homebrew/Cellar/go
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOROOT/bin
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export GOPRIVATE="github.com/twitsprout"
 
 # Java
@@ -183,6 +194,12 @@ export CPPFLAGS="-I/$(brew --prefix)/opt/openjdk/include"
 
 # Node
 export N_PRESERVE_NPM=1
+
+# Python POC
+export TMP_FILES_LOCATION="/tmp/video-intelligence/"
+export GCS_BUCKET="stories-dev-transcoder"
+export GCS_PREFIX="video-intelligence"
+export HAWK_URL="https://hawk.derp.website"
 
 eval $(thefuck --alias)
 

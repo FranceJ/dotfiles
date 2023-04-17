@@ -51,3 +51,4 @@ au FileType gitcommit setlocal tw=72
 :imap jj <Esc>
 :imap ZZ <Esc>o
 :imap DD <Esc>dd
+nnoremap <leader><space> :noh<cr>
