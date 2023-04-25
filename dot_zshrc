@@ -187,6 +187,7 @@ export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export GOPRIVATE="github.com/twitsprout"
+export GO111MODULE="on" 
 
 # Java
 export PATH="$(brew --prefix)/opt/openjdk/bin:$PATH"
