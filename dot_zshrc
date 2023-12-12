@@ -12,6 +12,11 @@ npm set prefix ~/.npm; path+=$HOME/.npm/bin; path+=./node_modules/.bin
 export N_PREFIX=$HOME/.n
 export PATH=$N_PREFIX/bin:$PATH
 
+# NVM stuff
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -155,7 +160,8 @@ alias start-c="yarn run start:dev"
 # DB access
 alias dev-tunnel="cloud-sql-proxy -g crowdriff-stories-dev:us-central1:stories -p 5433"
 alias prod-tunnel="cloud-sql-proxy -g crowdriff-stories-prod:us-central1:stories-prod -p 5434"
-alias es-tunnel="kubectl -n elastic-system port-forward svc/stories-es-http 9200:9200"
+alias es-tunnel-prod="gcloud compute ssh network-stories-elasticsearch-1 --project=crowdriff-stories-prod --zone us-central1-a -- -NL 9200:localhost:9200"
+alias es-tunnel-dev="gcloud compute ssh network-stories-elasticsearch --project=crowdriff-stories-dev --zone us-central1-a -- -NL 9200:localhost:9200"
 alias gcprod="gcloud config set project crowdriff-stories-prod && gcloud config set compute/region us-central1 && gcloud container clusters get-credentials prod-cluster"
 alias gcdev="gcloud config set project crowdriff-stories-dev && gcloud config set compute/region us-central1 && gcloud container clusters get-credentials dev-cluster"
 alias stories-connect-dev="gcloud config set project crowdriff-stories-dev && gcloud config set compute/region us-central1 && gcloud container clusters get-credentials dev-cluster && gcloud sql connect stories --user=brittonjenner --database=overlord"
@@ -172,14 +178,17 @@ alias ddeploy="BUILD_ENV=staging make deploy"
 alias pdeploy="BUILD_ENV=prod make deploy"
 
 # docker
-alias docker-start="colima start --profile amd64 -a x86_64 --cpu 4 --memory 4"
+alias docker-start-amd="colima start --network-address --profile amd64 -a x86_64 --cpu 4 --memory 4"
+alias docker-start-arm="colima start --profile arm64 -c 2 -m 4"
+alias docker-stop-amd="colima stop amd64"
+alias docker-stop-arm="colima stop arm64"
+#
+# misc
+alias uuidgenlower='uuidgen | tr "[:upper:]" "[:lower:]"'
 
 source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 export EDITOR="vim"
-
-# Docker
-export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
 # Golang
 # export GOROOT=/opt/homebrew/Cellar/go
@@ -194,7 +203,7 @@ export PATH="$(brew --prefix)/opt/openjdk/bin:$PATH"
 export CPPFLAGS="-I/$(brew --prefix)/opt/openjdk/include"
 
 # Node
-export N_PRESERVE_NPM=1
+export N_PRESERVE_NPM=0
 
 # Python POC
 export TMP_FILES_LOCATION="/tmp/video-intelligence/"
