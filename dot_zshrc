@@ -219,3 +219,4 @@ eval $(thefuck --alias)
 # Load local customizations
 source $HOME/.localzshrc
 
+source /Users/britton.jenner/.config/op/plugins.sh
