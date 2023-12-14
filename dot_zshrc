@@ -219,3 +219,5 @@ eval $(thefuck --alias)
 #
 export NPM_TOKEN=op://Private/4r2tbdgnokd6cjhd7zaqwpapau/password
 source /Users/britton.jenner/.config/op/plugins.sh
+
+[[ -s "/Users/britton.jenner/.gvm/scripts/gvm" ]] && source "/Users/britton.jenner/.gvm/scripts/gvm"
