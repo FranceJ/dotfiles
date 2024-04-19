@@ -184,6 +184,10 @@ alias docker-start-amd="colima start --network-address --profile amd64 -a x86_64
 alias docker-start-arm="colima start --profile arm64 -c 2 -m 4"
 alias docker-stop-amd="colima stop amd64"
 alias docker-stop-arm="colima stop arm64"
+
+#npm
+alias NPM_TOKEN={{ onepasswordRead "op://Private/NPM token/password" }}
+
 #
 # misc
 alias uuidgenlower='uuidgen | tr "[:upper:]" "[:lower:]"'
