@@ -186,7 +186,7 @@ alias docker-stop-amd="colima stop amd64"
 alias docker-stop-arm="colima stop arm64"
 
 #npm
-alias NPM_TOKEN="eval $(op read op://Private/NPM token/password)"
+alias NPM_TOKEN={{ onepasswordRead "op://Private/NPM token/password" }}
 
 #
 # misc
@@ -228,7 +228,6 @@ eval $(thefuck --alias)
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 #
 #
-export NPM_TOKEN=op://Private/4r2tbdgnokd6cjhd7zaqwpapau/password
 source /Users/britton.jenner/.config/op/plugins.sh
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 export GCP_CREDS=$HOME/auth/
