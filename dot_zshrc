@@ -186,7 +186,7 @@ alias docker-stop-amd="colima stop amd64"
 alias docker-stop-arm="colima stop arm64"
 
 #npm
-alias NPM_TOKEN='eval $(op read op://Private/NPM token/password)'
+alias NPM_TOKEN="eval $(op read op://Private/NPM token/password)"
 
 #
 # misc
