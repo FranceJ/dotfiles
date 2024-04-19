@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Fix npm node_modules permissions
-# npm set prefix ~/.npm; path+=$HOME/.npm/bin; path+=./node_modules/.bin
+npm set prefix ~/.npm; path+=$HOME/.npm/bin; path+=./node_modules/.bin
 
 # Fix n permissions
 export N_PREFIX=$HOME/.n
@@ -164,8 +164,10 @@ alias es-tunnel-prod="gcloud compute ssh network-stories-elasticsearch-1 --proje
 alias es-tunnel-dev="gcloud compute ssh network-stories-elasticsearch --project=crowdriff-stories-dev --zone us-central1-a -- -NL 9200:localhost:9200"
 alias gcprod="gcloud config set project crowdriff-stories-prod && gcloud config set compute/region us-central1 && gcloud container clusters get-credentials prod-cluster"
 alias gcdev="gcloud config set project crowdriff-stories-dev && gcloud config set compute/region us-central1 && gcloud container clusters get-credentials dev-cluster"
-alias stories-connect-dev="gcloud config set project crowdriff-stories-dev && gcloud config set compute/region us-central1 && gcloud container clusters get-credentials dev-cluster && gcloud sql connect stories --user=brittonjenner --database=overlord"
-alias stories-connect-prod="gcloud config set project crowdriff-stories-prod && gcloud config set compute/region us-central1 && gcloud container clusters get-credentials prod-cluster && gcloud sql connect stories-prod --user=brittonjenner --database=overlord"
+alias gcpprod="gcloud config set project prod-189020 && gcloud config set compute/region us-central1"
+alias gcpdev="gcloud config set project derp-187823 && gcloud config set compute/region us-central1"
+alias stories-connect-dev="gcloud config set project crowdriff-stories-dev && gcloud config set compute/region us-central1 && gcloud sql connect stories --user=brittonjenner --database=overlord"
+alias stories-connect-prod="gcloud config set project crowdriff-stories-prod && gcloud config set compute/region us-central1 && gcloud sql connect stories-prod --user=brittonjenner --database=overlord"
 alias challenges-connect-dev="gcloud config set project crowdriff-stories-dev && gcloud config set compute/region us-central1 && gcloud container clusters get-credentials dev-cluster && gcloud sql connect story-challenges-staging --user=brittonjenner --database=story_challenges"
 alias challenges-connect-prod="gcloud config set project crowdriff-stories-prod && gcloud config set compute/region us-central1 && gcloud container clusters get-credentials prod-cluster && gcloud sql connect story-challenges --user=brittonjenner --database=story_challenges"
 alias staging-challenges-pg="cloud-sql-proxy -g crowdriff-stories-dev:us-central1:story-challenges-staging -p 5435"
@@ -205,6 +207,11 @@ export CPPFLAGS="-I/$(brew --prefix)/opt/openjdk/include"
 # Node
 export N_PRESERVE_NPM=0
 
+# Python
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 # Python POC
 export TMP_FILES_LOCATION="/tmp/video-intelligence/"
 export GCS_BUCKET="stories-dev-transcoder"
@@ -219,5 +226,12 @@ eval $(thefuck --alias)
 #
 export NPM_TOKEN=op://Private/4r2tbdgnokd6cjhd7zaqwpapau/password
 source /Users/britton.jenner/.config/op/plugins.sh
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+export GCP_CREDS=$HOME/auth/
+
+# GPG commit signing
+export GPG_TTY=$(tty)
 
 [[ -s "/Users/britton.jenner/.gvm/scripts/gvm" ]] && source "/Users/britton.jenner/.gvm/scripts/gvm"
+# Load local customizations
+source $HOME/.localzshrc
