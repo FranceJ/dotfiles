@@ -185,6 +185,10 @@ alias docker-start-arm="colima start --profile arm64 -c 2 -m 4"
 alias docker-stop-amd="colima stop amd64"
 alias docker-stop-arm="colima stop arm64"
 
+# auto-git stuff
+alias mergemsg="pr-automation-common/scripts/prepare-squerge-msg.sh"
+alias deploypr="pr-automation-common/scripts/create-deploy-pr.sh"
+
 #npm
 export NPM_TOKEN={{ onepasswordRead "op://Shared-Dev Tools/Crowdriff NPM token/password" }}
 #
