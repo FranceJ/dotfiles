@@ -239,6 +239,8 @@ export GCP_CREDS=$HOME/auth/
 export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE="${HOME}/.colima/amd64/docker.sock"
 export DOCKER_HOST="unix://${HOME}/.colima/amd64/docker.sock"
 export TESTCONTAINERS_RYUK_CONTAINER_PRIVILEGED=true
+export TESTCONTAINERS_RYUK_CONNECTION_TIMEOUT=5m
+export TESTCONTAINERS_RYUK_RECONNECTION_TIMEOUT=30s
 
 # GPG commit signing
 export GPG_TTY=$(tty)
