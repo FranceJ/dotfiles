@@ -236,7 +236,7 @@ eval $(thefuck --alias)
 source /Users/britton.jenner/.config/op/plugins.sh
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 export GCP_CREDS=$HOME/auth/
-export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE="/Users/britton.jenner/.colima/amd64-2/docker.sock"
+export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE="${HOME}/.colima/amd64-2/docker.sock"
 export DOCKER_HOST="unix://${HOME}/.colima/amd64-2/docker.sock"
 
 # GPG commit signing
