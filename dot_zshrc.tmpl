@@ -174,7 +174,7 @@ alias challenges-connect-dev="gcloud config set project crowdriff-stories-dev &&
 alias challenges-connect-prod="gcloud config set project crowdriff-stories-prod && gcloud config set compute/region us-central1 && gcloud container clusters get-credentials prod-cluster && gcloud sql connect story-challenges --user=brittonjenner --database=story_challenges"
 alias staging-challenges-pg="cloud-sql-proxy -g crowdriff-stories-dev:us-central1:story-challenges-staging -p 5435"
 alias prod-challenges-pg="cloud-sql-proxy -g crowdriff-stories-prod:us-central1:story-challenges -p 5436"
-alias staging-challenges-dos="cloud-sql-proxy -g crowdriff-dos-dev:us-central1:dos-api -p 5432"
+alias staging-dos-pg="cloud-sql-proxy -g crowdriff-dos-dev:us-central1:dos-api -p 5432"
 
 # make commands
 alias dbuild="BUILD_ENV=staging make build"
