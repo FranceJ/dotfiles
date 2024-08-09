@@ -163,6 +163,7 @@ alias prod-tunnel="cloud-sql-proxy -g crowdriff-stories-prod:us-central1:stories
 alias es-tunnel-prod="gcloud compute ssh network-stories-elasticsearch-1 --project=crowdriff-stories-prod --zone us-central1-a -- -NL 9200:localhost:9200"
 alias es-tunnel-dev="gcloud compute ssh network-stories-elasticsearch --project=crowdriff-stories-dev --zone us-central1-a -- -NL 9200:localhost:9200"
 alias dev-tunnel-dos="cloud-sql-proxy -g crowdriff-dos-dev:us-central1:dos-api -p 5433"
+alias dev-tunnel-prod="cloud-sql-proxy -g crowdriff-dos-prod:us-central1:dos-api -p 5433"
 alias gcprod="gcloud config set project crowdriff-stories-prod && gcloud config set compute/region us-central1 && gcloud container clusters get-credentials prod-cluster"
 alias gcdev="gcloud config set project crowdriff-stories-dev && gcloud config set compute/region us-central1 && gcloud container clusters get-credentials dev-cluster"
 alias gcpprod="gcloud config set project prod-189020 && gcloud config set compute/region us-central1"
