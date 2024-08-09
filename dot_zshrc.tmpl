@@ -169,6 +169,7 @@ alias gcdev="gcloud config set project crowdriff-stories-dev && gcloud config se
 alias gcpprod="gcloud config set project prod-189020 && gcloud config set compute/region us-central1"
 alias gcpdev="gcloud config set project derp-187823 && gcloud config set compute/region us-central1"
 alias gcddev="gcloud config set project crowdriff-dos-dev && gcloud config set compute/region us-central1 && gcloud container clusters get-credentials dev-cluster"
+alias gcdprod="gcloud config set project crowdriff-dos-prod && gcloud config set compute/region us-central1 && gcloud container clusters get-credentials prod-cluster"
 alias stories-connect-dev="gcloud config set project crowdriff-stories-dev && gcloud config set compute/region us-central1 && gcloud sql connect stories --user=brittonjenner --database=overlord"
 alias stories-connect-prod="gcloud config set project crowdriff-stories-prod && gcloud config set compute/region us-central1 && gcloud sql connect stories-prod --user=brittonjenner --database=overlord"
 alias challenges-connect-dev="gcloud config set project crowdriff-stories-dev && gcloud config set compute/region us-central1 && gcloud container clusters get-credentials dev-cluster && gcloud sql connect story-challenges-staging --user=brittonjenner --database=story_challenges"
