@@ -200,7 +200,6 @@ alias mergemsg="pr-automation-common/scripts/prepare-squerge-msg.sh"
 alias deploypr="pr-automation-common/scripts/create-deploy-pr.sh"
 
 #npm
-export XDG_CONFIG_HOME=~/.config
 export NPM_TOKEN={{ onepasswordRead "op://Shared-Dev Tools/6wxeoghl2yxvz4v3vdzshoshda/password" }}
 export TIPTAP_NPM_TOKEN={{ onepasswordRead "op://Employee/Personal TipTap NPM token/credential" }}
 pnpm config set -g "//registry.npmjs.org/:_authToken" "$NPM_TOKEN"
