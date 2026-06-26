@@ -202,8 +202,8 @@ alias deploypr="pr-automation-common/scripts/create-deploy-pr.sh"
 #npm
 export NPM_TOKEN={{ onepasswordRead "op://Shared-Dev Tools/6wxeoghl2yxvz4v3vdzshoshda/password" }}
 export TIPTAP_NPM_TOKEN={{ onepasswordRead "op://Employee/Personal TipTap NPM token/credential" }}
-eval $(pnpm config set "//registry.npmjs.org/:_authToken" $NPM_TOKEN)
-eval $(pnpm config set "//registry.tiptap.dev/:_authToken" $TIPTAP_NPM_TOKEN)
+pnpm config set "//registry.npmjs.org/:_authToken" $NPM_TOKEN
+pnpm config set "//registry.tiptap.dev/:_authToken" $TIPTAP_NPM_TOKEN
 #
 # misc
 alias uuidgenlower='uuidgen | tr "[:upper:]" "[:lower:]"'
