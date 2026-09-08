@@ -204,6 +204,11 @@ export NPM_TOKEN={{ onepasswordRead "op://Shared-Dev Tools/6wxeoghl2yxvz4v3vdzsh
 export TIPTAP_NPM_TOKEN={{ onepasswordRead "op://Employee/Personal TipTap NPM token/credential" }}
 pnpm config set -g "//registry.npmjs.org/:_authToken" "$NPM_TOKEN"
 pnpm config set -g "//registry.tiptap.dev/:_authToken" "$TIPTAP_NPM_TOKEN"
+export PNPM_HOME="/Users/britton.jenner/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
 #
 # misc
 alias uuidgenlower='uuidgen | tr "[:upper:]" "[:lower:]"'
