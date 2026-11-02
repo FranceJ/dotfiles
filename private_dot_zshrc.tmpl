@@ -9,7 +9,7 @@ fi
 export OP_BIOMETRIC_UNLOCK_ENABLED=true
 
 # Fix npm node_modules permissions
-npm set prefix ~/.npm; path+=$HOME/.npm/bin; path+=./node_modules/.bin
+path+=$HOME/.npm/bin; path+=./node_modules/.bin
 
 # Fix n permissions
 export N_PREFIX=$HOME/.n
@@ -204,8 +204,11 @@ alias deploypr="pr-automation-common/scripts/create-deploy-pr.sh"
 #npm
 export NPM_TOKEN={{ onepasswordRead "op://Shared-Dev Tools/6wxeoghl2yxvz4v3vdzshoshda/password" }}
 export TIPTAP_NPM_TOKEN={{ onepasswordRead "op://Employee/Personal TipTap NPM token/credential" }}
-pnpm config set -g "//registry.npmjs.org/:_authToken" "$NPM_TOKEN"
-pnpm config set -g "//registry.tiptap.dev/:_authToken" "$TIPTAP_NPM_TOKEN"
+
+# pnpm keeps its own copy of these in auth.ini; re-run after a rotation to re-sync it
+alias pnpm-auth-npm='pnpm config set -g "//registry.npmjs.org/:_authToken" "$NPM_TOKEN"'
+alias pnpm-auth-tiptap='pnpm config set -g "//registry.tiptap.dev/:_authToken" "$TIPTAP_NPM_TOKEN"'
+
 export PNPM_HOME="/Users/britton.jenner/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME/bin:"*) ;;
