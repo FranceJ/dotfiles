@@ -221,10 +221,10 @@ source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 export EDITOR="vim"
 
 # Golang
-# export GOROOT=/opt/homebrew/Cellar/go
-export GOROOT=/usr/local/go
+# Homebrew's go resolves its own GOROOT; pinning one here breaks the toolchain
+# whenever that path moves.
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export PATH=$PATH:$GOPATH/bin
 export GOPRIVATE="github.com/twitsprout"
 export GO111MODULE="on" 
 
@@ -265,5 +265,4 @@ export TESTCONTAINERS_RYUK_VERBOSE=true
 # GPG commit signing
 export GPG_TTY=$(tty)
 
-[[ -s "/Users/britton.jenner/.gvm/scripts/gvm" ]] && source "/Users/britton.jenner/.gvm/scripts/gvm"
 # Load local customizations
