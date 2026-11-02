@@ -5,6 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# OnePassword hack to fix MacOS 27 breaking change
+export OP_BIOMETRIC_UNLOCK_ENABLED=true
+
 # Fix npm node_modules permissions
 npm set prefix ~/.npm; path+=$HOME/.npm/bin; path+=./node_modules/.bin
 
