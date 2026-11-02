@@ -8,6 +8,10 @@ fi
 # OnePassword hack to fix MacOS 27 breaking change
 export OP_BIOMETRIC_UNLOCK_ENABLED=true
 
+# brew shellenv exports HOMEBREW_PREFIX, but only .zprofile runs it, so a
+# non-login shell has to work it out for itself.
+BREW_PREFIX="${HOMEBREW_PREFIX:-$(brew --prefix)}"
+
 # Fix npm node_modules permissions
 path+=$HOME/.npm/bin; path+=./node_modules/.bin
 
@@ -112,14 +116,14 @@ source $ZSH/oh-my-zsh.sh
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs time battery)
 
 # include Z, yo
-source "$(brew --prefix)/etc/profile.d/z.sh"
+source "$BREW_PREFIX/etc/profile.d/z.sh"
 
 #include shell integration
 source ~/.iterm2_shell_integration.zsh
 
 #gcloud stuff
-source $(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
-source $(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+source $BREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+source $BREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
 
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -218,7 +222,7 @@ esac
 # misc
 alias uuidgenlower='uuidgen | tr "[:upper:]" "[:lower:]"'
 
-source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
+source $BREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme
 
 export EDITOR="vim"
 
@@ -231,8 +235,8 @@ export GOPRIVATE="github.com/twitsprout"
 export GO111MODULE="on" 
 
 # Java
-export PATH="$(brew --prefix)/opt/openjdk/bin:$PATH"
-export CPPFLAGS="-I/$(brew --prefix)/opt/openjdk/include"
+export PATH="$BREW_PREFIX/opt/openjdk/bin:$PATH"
+export CPPFLAGS="-I$BREW_PREFIX/opt/openjdk/include"
 
 # Node
 export N_PRESERVE_NPM=0
