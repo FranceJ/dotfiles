@@ -12,8 +12,10 @@ export OP_BIOMETRIC_UNLOCK_ENABLED=true
 # non-login shell has to work it out for itself.
 BREW_PREFIX="${HOMEBREW_PREFIX:-$(brew --prefix)}"
 
-# Fix npm node_modules permissions
-path+=$HOME/.npm/bin; path+=./node_modules/.bin
+# npm's global prefix is ~/.npm, so its bin dir belongs on PATH. Project binaries
+# come from `pnpm run`/`pnpm exec`, which scope node_modules/.bin to the command
+# instead of leaving a repo-controlled relative entry on PATH for the session.
+path+=$HOME/.npm/bin
 
 # Fix n permissions
 export N_PREFIX=$HOME/.n
