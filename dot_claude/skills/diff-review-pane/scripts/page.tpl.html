@@ -1,0 +1,565 @@
+<title>__TITLE__</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a sticky control bar over a six-column review grid - line numbers, both code sides, the rationale, and your note */
+:root{
+  --bg:#f6f8f8; --surface:#ffffff; --surface-2:#edf1f2; --surface-3:#e3e9ea;
+  --line:#d4dcde; --line-soft:#e4eaeb;
+  --fg:#152027; --fg-dim:#5b6b73; --fg-faint:#8699a1;
+  --accent:#0c6a6e; --accent-soft:#d5ebe9; --accent-fg:#064b4e;
+  --del-bg:#fcebea; --del-mark:#c0463c; --add-bg:#e4f3e8; --add-mark:#2a7a48;
+  --warn:#8f5600; --warn-soft:#faeeda; --warn-line:#e0bb7c;
+  --violet:#5a4a9c; --violet-soft:#e7e3f6;
+  --blue:#1f5f99; --blue-soft:#dde9f5;
+  --note-ring:#0c6a6e;
+  /* Zenburn: the code pane keeps its own dark ground in both page themes */
+  --zb-bg:#3f3f3f; --zb-void:#3a3a3a; --zb-fg:#dcdccc; --zb-gut:#353535; --zb-gut-fg:#6f6f6f;
+  --zb-del:#4c3f3f; --zb-add:#3f4c3f; --zb-del-mark:#cc9393; --zb-add-mark:#9fcc9f; --zb-rule:#4a4a4a;
+  --font-ui:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1416; --surface:#141c1f; --surface-2:#1a2429; --surface-3:#243036;
+  --line:#2a383e; --line-soft:#1f2b30;
+  --fg:#e3ecee; --fg-dim:#9bb0b7; --fg-faint:#6d848c;
+  --accent:#4fbdb5; --accent-soft:#17383a; --accent-fg:#8ad8d0;
+  --del-bg:#2e1a1a; --del-mark:#e0796d; --add-bg:#15291d; --add-mark:#6bc78c;
+  --warn:#e3ab5c; --warn-soft:#2e2414; --warn-line:#6b5327;
+  --violet:#a79aea; --violet-soft:#241f3b;
+  --blue:#7eb4e3; --blue-soft:#152634;
+  --note-ring:#4fbdb5;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0e1416; --surface:#141c1f; --surface-2:#1a2429; --surface-3:#243036;
+  --line:#2a383e; --line-soft:#1f2b30;
+  --fg:#e3ecee; --fg-dim:#9bb0b7; --fg-faint:#6d848c;
+  --accent:#4fbdb5; --accent-soft:#17383a; --accent-fg:#8ad8d0;
+  --del-bg:#2e1a1a; --del-mark:#e0796d; --add-bg:#15291d; --add-mark:#6bc78c;
+  --warn:#e3ab5c; --warn-soft:#2e2414; --warn-line:#6b5327;
+  --violet:#a79aea; --violet-soft:#241f3b;
+  --blue:#7eb4e3; --blue-soft:#152634;
+  --note-ring:#4fbdb5;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-ui);font-size:14px;line-height:1.5;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--surface);z-index:30}
+.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));max-width:1700px;margin:0 auto}
+h1{font-size:1.35rem;font-weight:600;letter-spacing:-.01em;margin:0;text-wrap:balance}
+a{color:var(--accent);text-underline-offset:2px}
+
+/* masthead */
+.mast{padding-block:22px 16px;border-bottom:1px solid var(--line)}
+.mast .eyebrow{font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-dim);font-weight:600;margin-bottom:6px}
+.mast p{color:var(--fg-dim);margin:8px 0 0;max-width:68ch}
+.stats{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:14px;font-variant-numeric:tabular-nums}
+.stat{display:flex;flex-direction:column;gap:1px}
+.stat b{font-size:1.05rem;font-weight:600}
+.stat span{font-size:.7rem;color:var(--fg-dim);letter-spacing:.04em;text-transform:uppercase}
+.plus{color:var(--add-mark)} .minus{color:var(--del-mark)}
+
+/* attention panel */
+.flagged{margin-block:18px;border:1px solid var(--warn-line);background:var(--warn-soft);border-radius:7px;padding:14px 16px}
+.flagged h2{font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--warn);margin:0 0 10px;font-weight:600}
+.flagged ol{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:7px}
+.flagged li{color:var(--fg)}
+.flagged a{font-family:var(--font-mono);font-size:.82rem;font-weight:500}
+
+/* controls */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line);
+     padding-block:9px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.files{display:flex;gap:4px;flex-wrap:wrap;min-width:0}
+.ftab{font:inherit;font-size:.78rem;background:none;border:1px solid transparent;border-radius:5px;padding:5px 9px;color:var(--fg-dim);cursor:pointer;
+      font-family:var(--font-mono);white-space:nowrap}
+.ftab:hover{background:var(--surface-2);color:var(--fg)}
+.ftab[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent-fg);border-color:var(--accent)}
+.spacer{flex:1 1 auto;min-width:8px}
+.chips{display:flex;gap:5px;flex-wrap:wrap}
+.chip{font:inherit;font-size:.72rem;border:1px solid var(--line);background:var(--surface-2);color:var(--fg-dim);border-radius:99px;
+      padding:3px 10px;cursor:pointer;display:flex;align-items:center;gap:5px}
+.chip[aria-pressed="true"]{background:var(--surface-3);color:var(--fg);border-color:var(--fg-faint)}
+.chip .dot{width:7px;height:7px;border-radius:99px;background:currentColor;flex:none}
+.chip[aria-pressed="false"]{opacity:.45;text-decoration:line-through}
+.chip b{font-variant-numeric:tabular-nums;font-weight:500;color:var(--fg-faint)}
+.btn{font:inherit;font-size:.75rem;border:1px solid var(--line);background:var(--surface-2);color:var(--fg);border-radius:5px;padding:5px 11px;cursor:pointer;white-space:nowrap}
+.btn:hover{background:var(--surface-3)}
+.btn:disabled{opacity:.45;cursor:default}
+.saveState{font-size:.72rem;color:var(--fg-faint);white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* file section */
+.fileSec{margin-block:26px 0}
+.fileHead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding-bottom:8px}
+.fileHead .path{font-family:var(--font-mono);font-size:.86rem;font-weight:500;word-break:break-all}
+.fileHead .counts{font-size:.76rem;color:var(--fg-dim);font-variant-numeric:tabular-nums}
+.fileNote{font-size:.82rem;color:var(--fg-dim);margin:0 0 12px;max-width:80ch}
+
+.hunk{border:1px solid var(--line);border-radius:7px;overflow:hidden;margin-bottom:16px;background:var(--surface)}
+.hunkHead{background:var(--surface-2);border-bottom:1px solid var(--line);padding:5px 12px;font-family:var(--font-mono);
+          font-size:.72rem;color:var(--fg-dim);display:flex;gap:10px;flex-wrap:wrap}
+.hunkHead .ctx{color:var(--fg-faint)}
+.grid{display:grid;grid-template-columns:3.2em minmax(0,1fr) 3.2em minmax(0,1fr) minmax(0,.95fr) minmax(0,.75fr);font-size:12.5px}
+
+.ln{font-family:var(--font-mono);font-size:11px;color:var(--zb-gut-fg);text-align:right;padding:2px 7px 2px 4px;
+    user-select:none;background:var(--zb-gut);border-right:1px solid var(--zb-rule);font-variant-numeric:tabular-nums}
+.code{font-family:var(--font-mono);white-space:pre-wrap;overflow-wrap:anywhere;padding:2px 10px;border-right:1px solid var(--zb-rule);
+      tab-size:4;background:var(--zb-bg);color:var(--zb-fg)}
+.code.empty{background:var(--zb-void)}
+.r-del .code, .r-del .ln{background:var(--zb-del)}
+.r-add .code, .r-add .ln{background:var(--zb-add)}
+.r-chg .lcode,.r-chg .lln{background:var(--zb-del)}
+.r-chg .rcode,.r-chg .rln{background:var(--zb-add)}
+.mark{color:var(--zb-gut-fg);user-select:none}
+.r-del .mark{color:var(--zb-del-mark)} .r-add .mark{color:var(--zb-add-mark)}
+.r-chg .lcode .mark{color:var(--zb-del-mark)} .r-chg .rcode .mark{color:var(--zb-add-mark)}
+.r-ind .code{opacity:.58}
+
+/* Zenburn token colours (pygments short names, scoped to the code pane).
+   Covers the classes Pygments emits across languages, not one lexer's. */
+.code .c,.code .c1,.code .cm,.code .cs,.code .ch,.code .cd{color:#7f9f7f;font-style:italic}
+.code .cp,.code .cpf{color:#ffcfaf}
+.code .k,.code .kn,.code .kc,.code .kd,.code .kr,.code .kp,.code .ow{color:#f0dfaf}
+.code .kt{color:#dfdfbf}
+.code .s,.code .s1,.code .s2,.code .sb,.code .sc,.code .sd,.code .sh,.code .sx,.code .ss,.code .sa{color:#cc9393}
+.code .sr{color:#dca3a3}
+.code .se,.code .si{color:#dca3a3}
+.code .m,.code .mi,.code .mf,.code .mh,.code .mo,.code .mb,.code .il{color:#8cd0d3}
+.code .nf,.code .fm,.code .nc,.code .py{color:#efef8f}
+.code .nb,.code .bp,.code .no{color:#dca3a3}
+.code .nd{color:#dfaf8f}
+.code .nt{color:#e3ceab}
+.code .na{color:#c3bf9f}
+.code .ne{color:#c3bf9f}
+.code .ni,.code .nl{color:#dfdfbf}
+.code .o{color:#f0efd0}
+.code .p,.code .pm{color:#b4b4a4}
+.code .err{color:#e37170}
+.code .n,.code .nn,.code .nx,.code .nv,.code .vc,.code .vg,.code .vi,.code .vm{color:#dcdccc}
+.code .gd{color:#cc9393} .code .gi{color:#9fcc9f} .code .gh{color:#efef8f}
+
+.why{padding:9px 13px;border-right:1px solid var(--line-soft);border-top:1px solid var(--line-soft);background:var(--surface)}
+.why:first-line{}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:.64rem;letter-spacing:.07em;text-transform:uppercase;font-weight:600;
+       border-radius:4px;padding:2px 7px;margin-bottom:6px}
+.b-behav{background:var(--warn-soft);color:var(--warn)}
+.b-arch{background:var(--accent-soft);color:var(--accent-fg)}
+.b-moved{background:var(--violet-soft);color:var(--violet)}
+.b-harness{background:var(--blue-soft);color:var(--blue)}
+.b-perf{background:var(--blue-soft);color:var(--blue)}
+.b-risk{background:var(--warn-soft);color:var(--warn)}
+.b-mech{background:var(--surface-3);color:var(--fg-dim)}
+.b-prose{background:var(--surface-3);color:var(--fg-dim)}
+.why p{margin:0;color:var(--fg-dim);font-size:12.5px;line-height:1.55}
+.why.k-behav,.why.k-risk{background:linear-gradient(90deg,var(--warn-soft),transparent 60%)}
+.why .anchor{float:right;font-size:.66rem;font-family:var(--font-mono);color:var(--fg-faint);text-decoration:none}
+.why .anchor:hover{color:var(--accent)}
+
+.noteCell{padding:7px 9px;border-top:1px solid var(--line-soft);background:var(--surface)}
+.noteCell textarea{width:100%;min-height:54px;font-family:var(--font-ui);font-size:12.5px;line-height:1.45;color:var(--fg);
+  background:var(--surface-2);border:1px solid var(--line);border-radius:5px;padding:6px 8px;resize:vertical}
+.noteCell textarea::placeholder{color:var(--fg-faint)}
+.noteCell textarea:focus{outline:2px solid var(--note-ring);outline-offset:-1px;background:var(--surface)}
+.noteCell textarea.filled{border-color:var(--accent);background:var(--surface)}
+.target{animation:flash 1.6s ease-out}
+@keyframes flash{from{background:var(--accent-soft)}to{background:transparent}}
+@media (prefers-reduced-motion:reduce){.target{animation:none;outline:2px solid var(--accent)}}
+
+.fold{grid-column:1/-1;background:var(--surface-2);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);
+      padding:3px 12px;font-size:11.5px;color:var(--fg-faint);cursor:pointer;font-family:var(--font-mono);text-align:left;
+      width:100%;border-left:0;border-right:0;font:inherit;font-size:11.5px}
+.fold:hover{background:var(--surface-3);color:var(--fg-dim)}
+.hidden{display:none !important}
+
+footer{border-top:1px solid var(--line);margin-top:34px;padding-block:18px 30px;color:var(--fg-dim);font-size:.8rem}
+footer p{margin:0 0 7px;max-width:80ch}
+
+@media (max-width:1100px){
+  .grid{grid-template-columns:2.6em minmax(0,1fr) 2.6em minmax(0,1fr);}
+  .why{grid-column:1/-1;border-right:0}
+  .noteCell{grid-column:1/-1;border-top:0;padding-top:0}
+}
+@media (max-width:620px){
+  .grid{grid-template-columns:2.4em minmax(0,1fr)}
+  .rln,.rcode{display:none}
+  .why,.noteCell{grid-column:1/-1}
+  .r-chg .lcode{background:var(--zb-bg)}
+}
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <div class="eyebrow" id="eyebrow"></div>
+    <h1 id="heading"></h1>
+    <p id="intro"></p>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <section class="flagged" id="flagged" hidden>
+    <h2 id="flaggedHeading"></h2>
+    <ol id="flaggedList"></ol>
+  </section>
+
+  <nav class="bar">
+    <div class="files" id="files"></div>
+    <div class="spacer"></div>
+    <div class="chips" id="chips"></div>
+    <button class="btn" id="ctxBtn" aria-pressed="true">Context</button>
+    <button class="btn" id="copyBtn">Copy my notes</button>
+    <span class="saveState" id="saveState"></span>
+  </nav>
+
+  <main id="main"></main>
+
+  <footer>
+    <p id="footNote"></p>
+    <p>Re-indentation is folded away: the handler lost two levels of <code>async with</code> nesting, which git reports as hundreds of changed lines. Those lines are counted separately above and shown dimmed when you open a fold.</p>
+  </footer>
+</div>
+
+<script>
+const DIFF = __DIFF__;
+const ANN = __ANN__;
+const META = __META__;
+const esc = s => String(s).replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const KINDS = {
+  behav:{label:"behaviour",n:0}, arch:{label:"vision-api",n:0}, moved:{label:"moved",n:0},
+  harness:{label:"test harness",n:0}, prose:{label:"wording",n:0},
+  perf:{label:"performance",n:0}, risk:{label:"risk",n:0}, mech:{label:"mechanical",n:0}
+};
+const FILE_NOTES = META.fileNotes || {};
+
+const BLOCK_INDEX = (() => {
+  const m = Object.create(null);
+  DIFF.files.forEach(f => f.hunks.forEach(h => h.rows.forEach(r => {
+    if (!r.b) return;
+    if (!m[r.b]) m[r.b] = {file: f.path, line: r.rn || r.ln || null, code: []};
+    const t = r.r !== undefined ? r.r : r.l;
+    if (m[r.b].code.length < 2 && t && t.trim()) m[r.b].code.push(t.trim());
+  })));
+  return m;
+})();
+
+const state = {
+  file: 0,
+  kinds: new Set(Object.keys(KINDS)),
+  context: true,
+  notes: Object.create(null),
+  db: null,
+  dirty: new Map()
+};
+
+/* ---------- stats ---------- */
+let totAdd=0, totDel=0, totInd=0;
+for (const f of DIFF.files){ totAdd+=f.adds; totDel+=f.dels; totInd+=f.indent; }
+for (const k of Object.values(ANN)) if (KINDS[k.k]) KINDS[k.k].n++;
+
+document.getElementById("eyebrow").textContent = META.eyebrow || "";
+document.getElementById("heading").textContent = META.heading;
+document.getElementById("intro").textContent = META.intro;
+document.title = META.title;
+
+document.getElementById("stats").innerHTML = [
+  ['<b>'+DIFF.files.length+'</b>','files'],
+  ['<b><span class="plus">+'+totAdd+'</span> <span class="minus">&minus;'+totDel+'</span></b>','changed lines'],
+  ['<b>'+totInd+'</b>','re-indented only'],
+  ['<b>'+Object.keys(ANN).length+'</b>','explained changes'],
+  ['<b id="noteCount">0</b>','notes from you']
+].map(([a,b])=>'<span class="stat">'+a+'<span>'+b+'</span></span>').join("");
+
+/* ---------- flagged ---------- */
+const FLAGGED = META.flagged || [];
+if (FLAGGED.length){
+  document.getElementById("flagged").hidden = false;
+  document.getElementById("flaggedHeading").textContent =
+    META.flaggedHeading || "Worth your attention";
+  document.getElementById("flaggedList").innerHTML = FLAGGED.map(f=>{
+    const [id,t,s] = Array.isArray(f) ? f : [f.block, f.title, f.detail];
+    return '<li><a href="#'+id+'">'+esc(t)+'</a>'+(s ? ' &mdash; '+esc(s) : '')+'</li>';
+  }).join("");
+}
+
+/* ---------- controls ---------- */
+const filesEl = document.getElementById("files");
+filesEl.innerHTML = DIFF.files.map((f,i)=>{
+  const short = f.path.split("/").pop();
+  return '<button class="ftab" data-f="'+i+'" aria-pressed="'+(i===0)+'">'+short+
+    ' <b style="font-weight:400;opacity:.6">+'+f.adds+'/&minus;'+f.dels+'</b></button>';
+}).join("") + '<button class="ftab" data-f="all" aria-pressed="false">all files</button>';
+
+const chipsEl = document.getElementById("chips");
+chipsEl.innerHTML = Object.entries(KINDS).filter(([,v])=>v.n>0).map(([k,v])=>
+  '<button class="chip b-'+k+'" data-k="'+k+'" aria-pressed="true"><span class="dot"></span>'+v.label+' <b>'+v.n+'</b></button>'
+).join("");
+
+filesEl.addEventListener("click", e=>{
+  const b = e.target.closest(".ftab"); if(!b) return;
+  state.file = b.dataset.f === "all" ? "all" : +b.dataset.f;
+  [...filesEl.children].forEach(c=>c.setAttribute("aria-pressed", String(c===b)));
+  render();
+});
+chipsEl.addEventListener("click", e=>{
+  const b = e.target.closest(".chip"); if(!b) return;
+  const k = b.dataset.k;
+  if (state.kinds.has(k)) state.kinds.delete(k); else state.kinds.add(k);
+  b.setAttribute("aria-pressed", String(state.kinds.has(k)));
+  render();
+});
+const ctxBtn = document.getElementById("ctxBtn");
+ctxBtn.addEventListener("click", ()=>{
+  state.context = !state.context;
+  ctxBtn.setAttribute("aria-pressed", String(state.context));
+  ctxBtn.textContent = state.context ? "Context" : "No context";
+  render();
+});
+
+/* ---------- render ---------- */
+const main = document.getElementById("main");
+
+function render(){
+  const idx = state.file === "all" ? DIFF.files.map((_,i)=>i) : [state.file];
+  main.innerHTML = idx.map(renderFile).join("");
+  wireNotes();
+  updateNoteCount();
+}
+
+function renderFile(fi){
+  const f = DIFF.files[fi];
+  let out = '<section class="fileSec"><div class="fileHead"><span class="path">'+f.path+'</span>'+
+    '<span class="counts"><span class="plus">+'+f.adds+'</span> <span class="minus">&minus;'+f.dels+'</span>'+
+    (f.indent ? ' &middot; '+f.indent+' re-indented' : '')+'</span></div>'+
+    (FILE_NOTES[f.path] ? '<p class="fileNote">'+FILE_NOTES[f.path]+'</p>' : '');
+  f.hunks.forEach((h,hi)=>{ out += renderHunk(f,fi,h,hi); });
+  return out + '</section>';
+}
+
+function renderHunk(f,fi,h,hi){
+  // group rows into segments: runs of ctx/ind, and change blocks
+  const segs = [];
+  for (const r of h.rows){
+    const isCtx = r.t === "ctx" || r.t === "ind";
+    const last = segs[segs.length-1];
+    if (isCtx){
+      if (last && last.kind === "ctx") last.rows.push(r);
+      else segs.push({kind:"ctx", rows:[r]});
+    } else {
+      if (last && last.kind === "blk" && last.id === r.b) last.rows.push(r);
+      else segs.push({kind:"blk", id:r.b, rows:[r]});
+    }
+  }
+  const visible = segs.filter(s => s.kind === "blk" && state.kinds.has((ANN[s.id]||{}).k));
+  if (!visible.length) return "";
+
+  let cells = "", row = 1;
+  const foldId = () => "fold-"+fi+"-"+hi+"-"+(row);
+
+  segs.forEach(seg=>{
+    if (seg.kind === "ctx"){
+      if (!state.context) return;
+      const n = seg.rows.length;
+      if (n > 8){
+        const head = seg.rows.slice(0,3), tail = seg.rows.slice(-3), mid = seg.rows.slice(3,-3);
+        head.forEach(r=>{ cells += codeRow(r,row++); });
+        const gid = "g"+fi+"-"+hi+"-"+row;
+        const indN = mid.filter(r=>r.t==="ind").length;
+        cells += '<button class="fold" style="grid-row:'+row+'" data-fold="'+gid+'">&#9662; '+mid.length+
+          ' unchanged line'+(mid.length===1?"":"s")+(indN? ' ('+indN+' re-indented)':'')+'</button>';
+        row++;
+        mid.forEach(r=>{ cells += codeRow(r,row++,gid,true); });
+        tail.forEach(r=>{ cells += codeRow(r,row++); });
+      } else {
+        seg.rows.forEach(r=>{ cells += codeRow(r,row++); });
+      }
+      return;
+    }
+    const a = ANN[seg.id] || {k:"mech",t:""};
+    if (!state.kinds.has(a.k)) return;
+    const start = row, n = seg.rows.length;
+    seg.rows.forEach(r=>{ cells += codeRow(r,row++); });
+    cells += '<div class="why k-'+a.k+'" id="'+seg.id+'" style="grid-row:'+start+'/span '+n+';grid-column:5">'+
+      '<a class="anchor" href="#'+seg.id+'">#</a>'+
+      '<span class="badge b-'+a.k+'">'+KINDS[a.k].label+'</span>'+
+      '<p>'+esc(a.t).replace(/`([^`]+)`/g,"<code>$1</code>")+'</p></div>';
+    cells += '<div class="noteCell" style="grid-row:'+start+'/span '+n+';grid-column:6">'+
+      '<textarea id="n-'+seg.id+'" data-b="'+seg.id+'" placeholder="Note for me to action…" aria-label="Your note on '+seg.id+'"></textarea></div>';
+  });
+
+  return '<div class="hunk"><div class="hunkHead"><span>@@ &minus;'+h.lstart+' +'+h.rstart+' @@</span>'+
+    (h.label ? '<span class="ctx">'+esc(h.label)+'</span>' : '')+'</div><div class="grid">'+cells+'</div></div>';
+}
+
+function codeRow(r,row,gid,folded){
+  const cls = {ctx:"r-ctx",ind:"r-ind",chg:"r-chg",add:"r-add",del:"r-del"}[r.t];
+  const hide = folded ? ' hidden' : '';
+  const g = gid ? ' data-g="'+gid+'"' : '';
+  const sty = ';grid-row:'+row;
+  const lmark = r.t==="del"||r.t==="chg" ? "-" : (r.t==="ind" ? "·" : " ");
+  const rmark = r.t==="add"||r.t==="chg" ? "+" : (r.t==="ind" ? "·" : " ");
+  let s = '<div class="ln lln '+cls+hide+'"'+g+' style="grid-column:1'+sty+'">'+(r.ln||"")+'</div>';
+  s += '<div class="code lcode '+cls+(("l" in r)?"":" empty")+hide+'"'+g+' style="grid-column:2'+sty+'">'+
+       ('l' in r ? '<span class="mark">'+lmark+'</span>'+(r.lh !== undefined ? r.lh : esc(r.l)) : '')+'</div>';
+  s += '<div class="ln rln '+cls+hide+'"'+g+' style="grid-column:3'+sty+'">'+(r.rn||"")+'</div>';
+  s += '<div class="code rcode '+cls+(("r" in r)?"":" empty")+hide+'"'+g+' style="grid-column:4'+sty+'">'+
+       ('r' in r ? '<span class="mark">'+rmark+'</span>'+(r.rh !== undefined ? r.rh : esc(r.r)) : '')+'</div>';
+  return s;
+}
+
+main.addEventListener("click", e=>{
+  const b = e.target.closest(".fold"); if(!b) return;
+  const g = b.dataset.fold;
+  const rows = main.querySelectorAll('[data-g="'+g+'"]');
+  const nowHidden = rows.length && rows[0].classList.contains("hidden");
+  rows.forEach(r=>r.classList.toggle("hidden", !nowHidden));
+  b.innerHTML = (nowHidden ? "▴ " : "▾ ") + b.innerHTML.slice(2);
+});
+
+/* ---------- notes ---------- */
+const saveState = document.getElementById("saveState");
+let saveTimer = null;
+
+function wireNotes(){
+  main.querySelectorAll("textarea[data-b]").forEach(ta=>{
+    const id = ta.dataset.b;
+    const v = state.notes[id] || "";
+    ta.value = v;
+    ta.classList.toggle("filled", !!v.trim());
+    ta.addEventListener("input", ()=>{
+      state.notes[id] = ta.value;
+      ta.classList.toggle("filled", !!ta.value.trim());
+      updateNoteCount();
+      queueSave(id);
+    });
+  });
+}
+
+function updateNoteCount(){
+  const n = Object.values(state.notes).filter(v=>v && v.trim()).length;
+  const el = document.getElementById("noteCount");
+  if (el) el.textContent = n;
+  document.getElementById("copyBtn").disabled = n === 0;
+}
+
+function queueSave(id){
+  state.dirty.set(id, true);
+  if (!state.db){ saveState.textContent = "saved in this tab only"; return; }
+  saveState.textContent = "saving…";
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(flush, 700);
+}
+
+async function flush(){
+  if (!state.db) return;
+  const ids = [...state.dirty.keys()];
+  state.dirty.clear();
+  try {
+    for (const id of ids){
+      const text = (state.notes[id] || "").trim();
+      const ref = state.db.collection("notes").doc(id);
+      if (!text) { await ref.delete(); continue; }
+      const b = BLOCK_INDEX[id] || {};
+      await ref.set({
+        text,
+        block: id,
+        file: b.file || "",
+        line: b.line || 0,
+        code: (b.code || []).join("  \u2502  ").slice(0, 200),
+        kind: (ANN[id] || {}).k || "",
+        at: new Date().toISOString()
+      });
+    }
+    saveState.textContent = "saved";
+  } catch (err){
+    saveState.textContent = "not saved — copy your notes out";
+  }
+}
+
+document.getElementById("copyBtn").addEventListener("click", async ()=>{
+  const lines = ["# " + (META.exportTitle || META.heading), ""];
+  let lastFile = null;
+  for (const f of DIFF.files){
+    for (const h of f.hunks){
+      const seen = new Set();
+      for (const r of h.rows){
+        if (!r.b || seen.has(r.b)) continue;
+        seen.add(r.b);
+        const note = (state.notes[r.b] || "").trim();
+        if (!note) continue;
+        if (f.path !== lastFile){ lines.push("## " + f.path, ""); lastFile = f.path; }
+        const b = BLOCK_INDEX[r.b] || {};
+        lines.push("- **" + r.b + "**" + (b.line ? " (line " + b.line + ")" : "") + ": " + note);
+        if (b.code) lines.push("  > `" + b.code + "`");
+      }
+    }
+  }
+  lines.push("");
+  const text = lines.join("\n");
+  const btn = document.getElementById("copyBtn");
+  try {
+    await navigator.clipboard.writeText(text);
+    btn.textContent = "Copied";
+    setTimeout(()=>{ btn.textContent = "Copy my notes"; }, 1800);
+  } catch (err) {
+    const pre = document.createElement("pre");
+    pre.textContent = text;
+    pre.style.cssText = "white-space:pre-wrap;background:var(--surface-2);padding:12px;border-radius:6px;font-size:12px";
+    main.prepend(pre);
+    const sel = window.getSelection(); const rg = document.createRange();
+    rg.selectNodeContents(pre); sel.removeAllRanges(); sel.addRange(rg);
+    btn.textContent = "Selected — copy it";
+  }
+});
+
+/* ---------- boot ---------- */
+render();
+
+function jumpToHash(){
+  const id = location.hash.slice(1);
+  if (!id || !ANN[id]) return;
+  const fi = +id.slice(1).split("-")[0];
+  if (state.file !== fi && state.file !== "all"){
+    state.file = fi;
+    [...filesEl.children].forEach(c=>c.setAttribute("aria-pressed", String(c.dataset.f === String(fi))));
+    render();
+  }
+  const el = document.getElementById(id);
+  if (el){ el.scrollIntoView({block:"center", behavior:"smooth"}); el.classList.add("target");
+           setTimeout(()=>el.classList.remove("target"), 1800); }
+}
+window.addEventListener("hashchange", jumpToHash);
+if (location.hash) setTimeout(jumpToHash, 60);
+
+document.getElementById("footNote").textContent = META.footer ||
+  "Notes are stored with this page, so they survive a reload and Claude can read them back. Nothing you type here reaches the pull request.";
+
+(async ()=>{
+  const timer = setTimeout(()=>{ if(!state.db) saveState.textContent = "notes are local to this tab"; }, 10000);
+  const db = await claude.use("db");
+  if (!db){ clearTimeout(timer); saveState.textContent = "notes are local to this tab"; return; }
+  state.db = db;
+  let settled = false;
+  db.collection("notes").onSnapshot(snap=>{
+    settled = true; clearTimeout(timer);
+    snap.docs.forEach(d=>{
+      const v = d.data() || {};
+      const id = d.id;
+      const ta = document.getElementById("n-"+id);
+      if (ta && document.activeElement === ta) return;
+      state.notes[id] = v.text || "";
+      if (ta){ ta.value = state.notes[id]; ta.classList.toggle("filled", !!state.notes[id].trim()); }
+    });
+    const live = new Set(snap.docs.map(d=>d.id));
+    for (const id of Object.keys(state.notes)){
+      if (!live.has(id) && !state.dirty.has(id)){
+        delete state.notes[id];
+        const ta = document.getElementById("n-"+id);
+        if (ta && document.activeElement !== ta){ ta.value=""; ta.classList.remove("filled"); }
+      }
+    }
+    updateNoteCount();
+    if (!saveState.textContent || saveState.textContent === "saving…") saveState.textContent = "saved";
+  }, err=>{
+    clearTimeout(timer);
+    saveState.textContent = err.code === "not_granted" ? "notes are local to this tab" : "notes can't be saved right now";
+  });
+})();
+</script>
