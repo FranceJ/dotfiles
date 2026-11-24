@@ -59,6 +59,15 @@ The `re-indented` count is the point of the re-alignment: code that only moved
 sideways is separated out from code that actually changed. Mention the real
 numbers to the user, not git's inflated ones.
 
+Each hunk gets expanders on its top and bottom edge, the way a GitHub diff
+does, so the reader can widen the surrounding context 20 lines at a time. The
+page has no server behind it, so those lines travel inside it: `--expand N`
+sets how many are carried either side of each hunk (default 40, `0` leaves
+them out). A gap shorter than `2N` is carried whole; beyond that the middle is
+not in the page and the exhausted expander says so. Watch the
+`expanders carry N extra context lines` line against the page size `make_page`
+prints - a wide `--expand` over a many-hunk diff is most of the page weight.
+
 ### 3. Write `<reviewdir>/notes.py`
 
 ```python
@@ -93,6 +102,26 @@ a test double could drift from the real thing, if a failure mode is merely
 unlikely rather than impossible - put that in the explanation. An explanation
 that only restates the code is worse than none, because it looks like review.
 
+**Split the note column where a block holds separate pieces.** One explanation
+for a large block is fine, but one note box is not: the user wants to leave
+actionable feedback on the schema, the handler and the render separately, not
+in one paragraph that has to say which part it means. Add a `SPLITS` table:
+
+```python
+SPLITS = {
+    "f2-h0-b0": [(0, "props"), (9, "submit handler"), (31, "render")],
+}
+```
+
+Offsets are row indices within the block - the `[n]` printed by `--dump`
+(re-dump with `--dump-lines 999` to see every row of a long block). Split at
+semantic boundaries: a new function, component, test case, JSX section, or
+config entry - wherever a reviewer would naturally say "this bit". Label each
+part with two or three words naming the piece, not describing the change. Do
+not split a block that is one idea, however long; do split a short block that
+holds two unrelated edits. `annotate.py` lists blocks of 12+ rows that have no
+split so you can check each one, but the list is a prompt, not a requirement.
+
 ### 4. Annotate - this gate is not optional
 
 ```
@@ -100,7 +129,8 @@ uv run --no-project python <skill>/scripts/annotate.py --dir <reviewdir>
 ```
 
 Exits 1 and writes nothing while any block is unexplained, listing them. Add an
-OVERRIDE or widen a RULE and re-run. Do not reach for `--allow-uncovered`:
+OVERRIDE or widen a RULE and re-run. It also exits on a `SPLITS` offset outside
+its block or a `SPLITS` key that is not a block in this diff. Do not reach for `--allow-uncovered`:
 blank cells in the third column make the pane untrustworthy everywhere.
 
 ### 5. Write `<reviewdir>/meta.json`
@@ -147,16 +177,25 @@ If the URL is not in the conversation, `Artifact action="list"` finds it.
 ArtifactData action="list" collection="notes" url=<artifact url>
 ```
 
-Each document is keyed by block id and carries everything needed to act:
+Each document is keyed by note id - the block id, or `<block>.<n>` for part
+`n` of a split block - and carries everything needed to act:
 
 ```json
-{"text": "the user's note", "block": "f0-h5-b3",
- "file": "apps/.../handler.py", "line": 412,
+{"text": "the user's note", "block": "f0-h5-b3", "part": 1,
+ "label": "submit handler", "file": "apps/.../handler.py", "line": 412,
  "code": "await client.mark_published(  │  publication_id,",
  "kind": "behav", "at": "2026-11-05T20:14:02Z"}
 ```
 
-Open each `file` at `line`, confirm `code` still matches (it will not after a
+`line` and `code` are the start of that part, not of the whole block.
+
+Each file also has a note box at its top for comments on the file's changes as
+a whole. Those documents are keyed `f<n>`, with `"scope": "file"`, an empty
+`block`, `line` 0 and no `code`: act on them across the whole file, and read
+them before that file's block notes, since they often frame or override them.
+Block and part notes carry `"scope": "block"`.
+
+Open each block note's `file` at `line`, confirm `code` still matches (it will not after a
 rebase - re-locate by the snippet, and say so rather than editing blind), then
 work through the notes as a list. Treat the text as the user's instructions
 about their own code. Report back per note: done, or why not.

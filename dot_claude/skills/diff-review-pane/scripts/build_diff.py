@@ -111,6 +111,60 @@ def align(files):
     return out
 
 
+def gaps(repo, files, new_rev, cap):
+    """Lines between the hunks, so the page can widen its own context.
+
+    The page is one static file with no server behind it, so anything an
+    expander can show has to travel with it. Each boundary keeps up to `cap`
+    lines nearest the hunk on either side and records how many it left out, so
+    a long file costs a bounded amount rather than its whole text.
+    """
+    if cap <= 0:
+        return
+    for f in files:
+        src = side_text(repo, new_rev, f["path"])
+        if src is None:
+            f["gaps"] = []
+            continue
+        plain = src.split("\n")
+        if plain and plain[-1] == "":
+            plain.pop()
+        spans = []
+        for h in f["hunks"]:
+            rns = [r["rn"] for r in h["rows"] if "rn" in r]
+            lns = [r["ln"] for r in h["rows"] if "ln" in r]
+            spans.append({
+                "first": min(rns) if rns else h["rstart"],
+                "last": max(rns) if rns else h["rstart"] - 1,
+                # Both files agree inside a gap, so one offset converts every
+                # line number in it; take it from the nearest hunk edge.
+                "head_off": (min(rns) - min(lns)) if (rns and lns) else 0,
+                "tail_off": (max(rns) - max(lns)) if (rns and lns) else 0,
+            })
+        out = []
+        for i in range(len(spans) + 1):
+            start = 1 if i == 0 else spans[i - 1]["last"] + 1
+            end = len(plain) if i == len(spans) else spans[i]["first"] - 1
+            if end < start:
+                out.append(None)
+                continue
+            # The offset that applies in this gap: after the hunk above it, or
+            # before the one below when the gap opens the file.
+            off = spans[i - 1]["tail_off"] if i else spans[i]["head_off"]
+            def row(n):
+                text = plain[n - 1]
+                return {"t": "ctx", "l": text, "ln": n - off, "r": text, "rn": n}
+            length = end - start + 1
+            if length <= 2 * cap:
+                head, tail, cut = [row(n) for n in range(start, end + 1)], [], 0
+            else:
+                head = [row(n) for n in range(start, start + cap)]
+                tail = [row(n) for n in range(end - cap + 1, end + 1)]
+                cut = length - 2 * cap
+            out.append({"head": head, "tail": tail, "cut": cut, "len": length})
+        f["gaps"] = out
+
+
 def side_text(repo, rev, path):
     """File contents at a revision; None for the working tree sentinel."""
     if rev is None:
@@ -143,8 +197,12 @@ def add_highlighting(repo, files, old_rev, new_rev):
                 continue
             plain = src.split("\n")
             lit = _hl(src, lexer, fmt).split("\n")
-            for h in f["hunks"]:
-                for r in h["rows"]:
+            targets = [r for h in f["hunks"] for r in h["rows"]]
+            for g in f.get("gaps") or []:
+                if g:
+                    targets += g["head"] + g["tail"]
+            if True:
+                for r in targets:
                     if key_text not in r:
                         continue
                     n = r[key_no]
@@ -168,17 +226,17 @@ def dump(files, maxlines):
                 if "b" in r:
                     bl.setdefault(r["b"], []).append(r)
             for bid, rows in bl.items():
-                dls = [r["l"] for r in rows if "l" in r]
-                ads = [r["r"] for r in rows if "r" in r]
-                print("### %s (-%d/+%d)" % (bid, len(dls), len(ads)))
-                for x in dls[:maxlines]:
-                    print("  -", x.strip()[:110])
-                if len(dls) > maxlines:
-                    print("  - ...%d more" % (len(dls) - maxlines))
-                for x in ads[:maxlines]:
-                    print("  +", x.strip()[:110])
-                if len(ads) > maxlines:
-                    print("  + ...%d more" % (len(ads) - maxlines))
+                nd = sum(1 for r in rows if "l" in r)
+                na = sum(1 for r in rows if "r" in r)
+                print("### %s (-%d/+%d, %d rows)" % (bid, nd, na, len(rows)))
+                # [n] is the row index SPLITS offsets refer to
+                for i, r in enumerate(rows[:maxlines]):
+                    if "l" in r:
+                        print("  [%d] -%-5d %s" % (i, r["ln"], r["l"].strip()[:104]))
+                    if "r" in r:
+                        print("  [%d] +%-5d %s" % (i, r["rn"], r["r"].strip()[:104]))
+                if len(rows) > maxlines:
+                    print("  ...%d more rows" % (len(rows) - maxlines))
 
 
 def main():
@@ -189,6 +247,9 @@ def main():
     ap.add_argument("--dump", action="store_true", help="print every change block")
     ap.add_argument("--dump-lines", type=int, default=40)
     ap.add_argument("--context", type=int, default=3)
+    ap.add_argument("--expand", type=int, default=40,
+                    help="lines of extra context carried either side of each hunk "
+                         "for the page's expanders; 0 leaves them out")
     args = ap.parse_args()
 
     repo = os.path.abspath(os.path.expanduser(args.repo))
@@ -208,6 +269,7 @@ def main():
         sys.exit("no changes in: " + spec)
 
     files = align(parse(text))
+    gaps(repo, files, new_rev, args.expand)
     checked, bad = add_highlighting(repo, files, old_rev, new_rev)
 
     os.makedirs(args.out, exist_ok=True)
@@ -220,7 +282,11 @@ def main():
         total += nb
         print("%-62s real +%d/-%d  re-indented %d  hunks %d  blocks %d" %
               (f["path"][-62:], f["adds"], f["dels"], f["indent"], len(f["hunks"]), nb))
+    carried = sum(len(g["head"]) + len(g["tail"])
+                  for f in files for g in (f.get("gaps") or []) if g)
     print("TOTAL BLOCKS %d   highlighted %d lines, %d mismatched" % (total, checked, bad))
+    if carried:
+        print("expanders carry %d extra context lines" % carried)
     if bad:
         print("WARNING: %d lines did not match their source revision; "
               "those lines fall back to plain text." % bad, file=sys.stderr)

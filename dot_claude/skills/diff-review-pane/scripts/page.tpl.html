@@ -156,11 +156,21 @@ a{color:var(--accent);text-underline-offset:2px}
 .why .anchor:hover{color:var(--accent)}
 
 .noteCell{padding:7px 9px;border-top:1px solid var(--line-soft);background:var(--surface)}
-.noteCell textarea{width:100%;min-height:54px;font-family:var(--font-ui);font-size:12.5px;line-height:1.45;color:var(--fg);
+.noteCell textarea,.fileNoteBox textarea{width:100%;min-height:54px;font-family:var(--font-ui);font-size:12.5px;line-height:1.45;color:var(--fg);
   background:var(--surface-2);border:1px solid var(--line);border-radius:5px;padding:6px 8px;resize:vertical}
-.noteCell textarea::placeholder{color:var(--fg-faint)}
-.noteCell textarea:focus{outline:2px solid var(--note-ring);outline-offset:-1px;background:var(--surface)}
-.noteCell textarea.filled{border-color:var(--accent);background:var(--surface)}
+.noteCell textarea::placeholder,.fileNoteBox textarea::placeholder{color:var(--fg-faint)}
+.noteCell textarea:focus,.fileNoteBox textarea:focus{outline:2px solid var(--note-ring);outline-offset:-1px;background:var(--surface)}
+.noteCell textarea.filled,.fileNoteBox textarea.filled{border-color:var(--accent);background:var(--surface)}
+.fileNoteBox{margin:0 0 14px;max-width:80ch;display:flex;flex-direction:column;gap:4px}
+.fileNoteBox textarea{min-height:44px;background:var(--surface)}
+/* a block split into note parts: each box spans only its own rows */
+.noteCell{display:flex;flex-direction:column;gap:4px}
+.noteCell textarea{flex:1 1 auto}
+.noteCell.part + .noteCell.part{border-top:1px dashed var(--line)}
+.partLabel{font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;color:var(--fg-faint);font-weight:600}
+.code.partStart,.ln.partStart{box-shadow:inset 0 1px 0 #6f6f6f}
+.code.partOn,.ln.partOn{box-shadow:inset 3px 0 0 var(--note-ring)}
+.code.partOn.partStart,.ln.partOn.partStart{box-shadow:inset 3px 0 0 var(--note-ring),inset 0 1px 0 #6f6f6f}
 .target{animation:flash 1.6s ease-out}
 @keyframes flash{from{background:var(--accent-soft)}to{background:transparent}}
 @media (prefers-reduced-motion:reduce){.target{animation:none;outline:2px solid var(--accent)}}
@@ -169,6 +179,12 @@ a{color:var(--accent);text-underline-offset:2px}
       padding:3px 12px;font-size:11.5px;color:var(--fg-faint);cursor:pointer;font-family:var(--font-mono);text-align:left;
       width:100%;border-left:0;border-right:0;font:inherit;font-size:11.5px}
 .fold:hover{background:var(--surface-3);color:var(--fg-dim)}
+.expand{grid-column:1/-1;background:var(--surface-2);padding:2px 12px;font-size:11.5px;color:var(--fg-faint);
+        cursor:pointer;font-family:var(--font-mono);text-align:left;width:100%;border:0;
+        border-block:1px solid var(--line-soft)}
+.expand:hover{background:var(--surface-3);color:var(--fg-dim)}
+.expand[disabled]{cursor:default;opacity:.55}
+.expand[disabled]:hover{background:var(--surface-2);color:var(--fg-faint)}
 .hidden{display:none !important}
 
 footer{border-top:1px solid var(--line);margin-top:34px;padding-block:18px 30px;color:var(--fg-dim);font-size:.8rem}
@@ -229,14 +245,33 @@ const KINDS = {
 };
 const FILE_NOTES = META.fileNotes || {};
 
-const BLOCK_INDEX = (() => {
+/* Note ids: a block's own id when it has one note box, `<block>.<n>` (1-based)
+   for each part of a block that SPLITS divided. PART_OF maps a row to its id. */
+const partIdFor = (bid, i) => (ANN[bid] && ANN[bid].p) ? bid + "." + (i + 1) : bid;
+/* `f<n>` is the whole-file note; block ids always carry a hunk, so they never collide */
+const fileNoteId = fi => "f" + fi;
+const PART_OF = new Map();
+const NOTE_INDEX = (() => {
   const m = Object.create(null);
-  DIFF.files.forEach(f => f.hunks.forEach(h => h.rows.forEach(r => {
-    if (!r.b) return;
-    if (!m[r.b]) m[r.b] = {file: f.path, line: r.rn || r.ln || null, code: []};
-    const t = r.r !== undefined ? r.r : r.l;
-    if (m[r.b].code.length < 2 && t && t.trim()) m[r.b].code.push(t.trim());
-  })));
+  DIFF.files.forEach((f, fi) => {
+    m[fileNoteId(fi)] = {block: "", part: 0, label: "whole file", file: f.path, line: 0, code: []};
+  });
+  DIFF.files.forEach(f => f.hunks.forEach(h => {
+    const seen = Object.create(null);
+    h.rows.forEach(r => {
+      if (!r.b) return;
+      const off = seen[r.b] = (seen[r.b] === undefined ? 0 : seen[r.b] + 1);
+      const parts = (ANN[r.b] && ANN[r.b].p) || [{o:0, l:""}];
+      let pi = 0;
+      while (pi + 1 < parts.length && parts[pi + 1].o <= off) pi++;
+      const id = partIdFor(r.b, pi);
+      PART_OF.set(r, {id, first: off === parts[pi].o && pi > 0});
+      if (!m[id]) m[id] = {block: r.b, part: pi, label: parts[pi].l || "",
+                           file: f.path, line: r.rn || r.ln || null, code: []};
+      const t = r.r !== undefined ? r.r : r.l;
+      if (m[id].code.length < 2 && t && t.trim()) m[id].code.push(t.trim());
+    });
+  }));
   return m;
 })();
 
@@ -328,10 +363,15 @@ function renderFile(fi){
   let out = '<section class="fileSec"><div class="fileHead"><span class="path">'+f.path+'</span>'+
     '<span class="counts"><span class="plus">+'+f.adds+'</span> <span class="minus">&minus;'+f.dels+'</span>'+
     (f.indent ? ' &middot; '+f.indent+' re-indented' : '')+'</span></div>'+
-    (FILE_NOTES[f.path] ? '<p class="fileNote">'+FILE_NOTES[f.path]+'</p>' : '');
+    (FILE_NOTES[f.path] ? '<p class="fileNote">'+FILE_NOTES[f.path]+'</p>' : '') +
+    '<div class="fileNoteBox"><span class="partLabel">This file as a whole</span>'+
+    '<textarea id="n-'+fileNoteId(fi)+'" data-b="'+fileNoteId(fi)+'" placeholder="General note on this file\'s changes…" '+
+    'aria-label="Your note on '+esc(f.path)+' as a whole"></textarea></div>';
   f.hunks.forEach((h,hi)=>{ out += renderHunk(f,fi,h,hi); });
   return out + '</section>';
 }
+
+const STEP_SIZE = 20;
 
 function renderHunk(f,fi,h,hi){
   // group rows into segments: runs of ctx/ind, and change blocks
@@ -352,6 +392,39 @@ function renderHunk(f,fi,h,hi){
 
   let cells = "", row = 1;
   const foldId = () => "fold-"+fi+"-"+hi+"-"+(row);
+
+  // Lines either side of the hunk, carried by build_diff and revealed a step
+  // at a time from the edge inwards, nearest line first.
+  const gapsOf = f.gaps || [];
+  const expander = (rows, cut, len, dir, gid) => {
+    if (!state.context || !rows.length) return "";
+    const chunks = [];
+    for (let i = 0; i < rows.length; i += STEP_SIZE) chunks.push(rows.slice(i, i + STEP_SIZE));
+    if (dir === "up") chunks.reverse();              // nearest the hunk first
+    const order = new Map();
+    chunks.forEach((c, ci) => c.forEach(r => order.set(r, ci)));
+    const bar = '<button class="expand" style="grid-row:ROWSLOT" data-exp="'+gid+
+      '" data-n="'+chunks.length+'" data-shown="0" data-left="'+rows.length+
+      '" data-cut="'+cut+'" data-dir="'+dir+'">'+(dir === "up" ? "&#9652;" : "&#9662;")+
+      ' show '+Math.min(STEP_SIZE, rows.length)+' more of '+len+'</button>';
+    let body = "";
+    rows.forEach(r => { body += codeRow(r, row++, gid+"-"+order.get(r), true); });
+    return dir === "up" ? [bar, body] : [body, bar];
+  };
+
+  const above = gapsOf[hi];
+  if (above){
+    const barRow = row;                               // claimed before the rows
+    // A gap short enough to carry whole sits in `head`; both bars show all of it.
+    const upRows = above.tail.length ? above.tail : above.head;
+    const parts = expander(upRows, above.cut, above.len, "up", "x"+fi+"-"+hi+"-up");
+    if (parts){
+      cells += parts[0].replace("ROWSLOT", barRow);
+      // the rows were numbered from barRow, so each shifts down past the bar
+      cells += parts[1].replace(/grid-row:(\d+)/g, (m, n) => "grid-row:"+(+n + 1));
+      row++;
+    }
+  }
 
   segs.forEach(seg=>{
     if (seg.kind === "ctx"){
@@ -380,18 +453,38 @@ function renderHunk(f,fi,h,hi){
       '<a class="anchor" href="#'+seg.id+'">#</a>'+
       '<span class="badge b-'+a.k+'">'+KINDS[a.k].label+'</span>'+
       '<p>'+esc(a.t).replace(/`([^`]+)`/g,"<code>$1</code>")+'</p></div>';
-    cells += '<div class="noteCell" style="grid-row:'+start+'/span '+n+';grid-column:6">'+
-      '<textarea id="n-'+seg.id+'" data-b="'+seg.id+'" placeholder="Note for me to action…" aria-label="Your note on '+seg.id+'"></textarea></div>';
+    const parts = a.p || [{o:0, l:""}];
+    parts.forEach((p, pi)=>{
+      const end = pi + 1 < parts.length ? parts[pi + 1].o : n;
+      const id = partIdFor(seg.id, pi);
+      const split = parts.length > 1;
+      const what = split ? (p.l ? p.l : "part " + (pi + 1)) + " of " + seg.id : seg.id;
+      cells += '<div class="noteCell'+(split ? ' part' : '')+'" style="grid-row:'+(start + p.o)+'/span '+(end - p.o)+';grid-column:6">'+
+        (split ? '<span class="partLabel">'+esc(p.l || "part " + (pi + 1))+'</span>' : '')+
+        '<textarea id="n-'+id+'" data-b="'+id+'" placeholder="Note for me to action…" aria-label="Your note on '+esc(what)+'"></textarea></div>';
+    });
   });
+
+  const below = gapsOf[hi + 1];
+  if (below){
+    const downRows = below.head.length ? below.head : below.tail;
+    const parts = expander(downRows, below.cut, below.len, "down", "x"+fi+"-"+hi+"-dn");
+    if (parts){
+      cells += parts[0];
+      cells += parts[1].replace("ROWSLOT", row);
+      row++;
+    }
+  }
 
   return '<div class="hunk"><div class="hunkHead"><span>@@ &minus;'+h.lstart+' +'+h.rstart+' @@</span>'+
     (h.label ? '<span class="ctx">'+esc(h.label)+'</span>' : '')+'</div><div class="grid">'+cells+'</div></div>';
 }
 
 function codeRow(r,row,gid,folded){
-  const cls = {ctx:"r-ctx",ind:"r-ind",chg:"r-chg",add:"r-add",del:"r-del"}[r.t];
+  const pt = PART_OF.get(r);
+  const cls = {ctx:"r-ctx",ind:"r-ind",chg:"r-chg",add:"r-add",del:"r-del"}[r.t] + (pt && pt.first ? " partStart" : "");
   const hide = folded ? ' hidden' : '';
-  const g = gid ? ' data-g="'+gid+'"' : '';
+  const g = (gid ? ' data-g="'+gid+'"' : '') + (pt ? ' data-p="'+pt.id+'"' : '');
   const sty = ';grid-row:'+row;
   const lmark = r.t==="del"||r.t==="chg" ? "-" : (r.t==="ind" ? "·" : " ");
   const rmark = r.t==="add"||r.t==="chg" ? "+" : (r.t==="ind" ? "·" : " ");
@@ -405,12 +498,43 @@ function codeRow(r,row,gid,folded){
 }
 
 main.addEventListener("click", e=>{
+  const b = e.target.closest(".expand"); if(!b) return;
+  const shown = +b.dataset.shown, total = +b.dataset.n;
+  if (shown >= total) return;
+  main.querySelectorAll('[data-g="'+b.dataset.exp+'-'+shown+'"]')
+      .forEach(c=>c.classList.remove("hidden"));
+  const left = +b.dataset.left - Math.min(STEP_SIZE, +b.dataset.left);
+  b.dataset.shown = shown + 1;
+  b.dataset.left = left;
+  if (shown + 1 >= total){
+    const cut = +b.dataset.cut;
+    b.disabled = true;
+    b.textContent = cut
+      ? "\u2500 " + cut + " more line" + (cut === 1 ? "" : "s") + " not carried in this page"
+      : "\u2500 nothing further to show";
+  } else {
+    b.innerHTML = (b.dataset.dir === "up" ? "\u25B2" : "\u25BC") +
+      " show " + Math.min(STEP_SIZE, left) + " more of " + b.textContent.split(" of ")[1];
+  }
+});
+
+main.addEventListener("click", e=>{
   const b = e.target.closest(".fold"); if(!b) return;
   const g = b.dataset.fold;
   const rows = main.querySelectorAll('[data-g="'+g+'"]');
   const nowHidden = rows.length && rows[0].classList.contains("hidden");
   rows.forEach(r=>r.classList.toggle("hidden", !nowHidden));
   b.innerHTML = (nowHidden ? "▴ " : "▾ ") + b.innerHTML.slice(2);
+});
+
+/* while a note box has focus, mark the code rows it covers */
+main.addEventListener("focusin", e=>{
+  const id = e.target.dataset && e.target.dataset.b; if (!id) return;
+  main.querySelectorAll('[data-p="'+id+'"]').forEach(c=>c.classList.add("partOn"));
+});
+main.addEventListener("focusout", e=>{
+  const id = e.target.dataset && e.target.dataset.b; if (!id) return;
+  main.querySelectorAll('[data-p="'+id+'"]').forEach(c=>c.classList.remove("partOn"));
 });
 
 /* ---------- notes ---------- */
@@ -456,14 +580,17 @@ async function flush(){
       const text = (state.notes[id] || "").trim();
       const ref = state.db.collection("notes").doc(id);
       if (!text) { await ref.delete(); continue; }
-      const b = BLOCK_INDEX[id] || {};
+      const b = NOTE_INDEX[id] || {block: id};
       await ref.set({
         text,
-        block: id,
+        scope: b.block ? "block" : "file",
+        block: b.block,
+        part: b.part || 0,
+        label: b.label || "",
         file: b.file || "",
         line: b.line || 0,
         code: (b.code || []).join("  \u2502  ").slice(0, 200),
-        kind: (ANN[id] || {}).k || "",
+        kind: (ANN[b.block] || {}).k || "",
         at: new Date().toISOString()
       });
     }
@@ -476,21 +603,25 @@ async function flush(){
 document.getElementById("copyBtn").addEventListener("click", async ()=>{
   const lines = ["# " + (META.exportTitle || META.heading), ""];
   let lastFile = null;
-  for (const f of DIFF.files){
+  DIFF.files.forEach((f, fi)=>{
+    const whole = (state.notes[fileNoteId(fi)] || "").trim();
+    if (whole){ lines.push("## " + f.path, "", "- **whole file**: " + whole); lastFile = f.path; }
     for (const h of f.hunks){
       const seen = new Set();
       for (const r of h.rows){
-        if (!r.b || seen.has(r.b)) continue;
-        seen.add(r.b);
-        const note = (state.notes[r.b] || "").trim();
+        const pt = PART_OF.get(r);
+        if (!pt || seen.has(pt.id)) continue;
+        seen.add(pt.id);
+        const note = (state.notes[pt.id] || "").trim();
         if (!note) continue;
         if (f.path !== lastFile){ lines.push("## " + f.path, ""); lastFile = f.path; }
-        const b = BLOCK_INDEX[r.b] || {};
-        lines.push("- **" + r.b + "**" + (b.line ? " (line " + b.line + ")" : "") + ": " + note);
-        if (b.code) lines.push("  > `" + b.code + "`");
+        const b = NOTE_INDEX[pt.id] || {};
+        lines.push("- **" + pt.id + "**" + (b.label ? " " + b.label : "") +
+                   (b.line ? " (line " + b.line + ")" : "") + ": " + note);
+        if (b.code && b.code.length) lines.push("  > `" + b.code.join("  │  ") + "`");
       }
     }
-  }
+  });
   lines.push("");
   const text = lines.join("\n");
   const btn = document.getElementById("copyBtn");
